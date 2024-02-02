@@ -2,72 +2,39 @@ package org.gandharva.gandharva.model;
 
 import org.gandharva.gandharva.constants.UserType;
 
-import java.util.UUID;
+import java.time.LocalDate;
 
-public class User {
-    private UUID id;
-    private String firstName;
-    private String lastName;
-    private UserType userType;
-    private String email;
-    private String password;
+public class User extends ParentUser {
+    private String nic;
+    private LocalDate birthday;
 
     public User() {}
 
-    public User(String firstName, String lastName, UserType userType, String email, String password) {
-        this.id = UUID.randomUUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userType = userType;
-        this.email = email;
-        this.password = password;
+    public User(String nic, LocalDate birthday) {
+        this.nic = nic;
+        this.birthday = birthday;
     }
 
-    public UUID getId() {
-        return id;
+    public User(ParentUser parentUser, String nic, LocalDate birthday) {
+        super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
+                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
+        this.nic = nic;
+        this.birthday = birthday;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public String getNic() {
+        return nic;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setNic(String nic) {
+        this.nic = nic;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
     }
 }

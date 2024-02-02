@@ -4,6 +4,7 @@ public enum UserType {
     GUEST_USER,
     PREMIUM_USER,
     STANDARD_USER,
+    USER,
     ASTROLOGER,
     EVENT_PLANER,
     ADMIN
