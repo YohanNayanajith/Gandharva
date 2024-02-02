@@ -143,6 +143,8 @@
   }).then((result) => {
     if (result.isConfirmed) {
       window.location.href = "HomePage.jsp";
+    }else{
+      window.location.href = "Astrologer_dashboard.jsp";
     }
   });
 </script>

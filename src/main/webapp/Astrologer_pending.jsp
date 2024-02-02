@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="styles.css">
-    <title>Dashboard</title>
+    <title>User Requests</title>
 
 </head>
 <body>
@@ -88,7 +88,7 @@
 <div class="main--content" >
     <div class="header--wrapper">
         <div class="header--title">
-            <span> Pending</span>
+            <span> User</span>
             <h2>Requests</h2>
 
         </div>
@@ -133,6 +133,7 @@
                     <th> Name of the customer</th>
                     <th> Download Horoscope </th>
                     <th> Status </th>
+                    <th>Feedbacks for the users</th>
                     <th> Comments </th>
 
                 </tr>
@@ -151,6 +152,25 @@
                     <td>
                         Done
                     </td>
+
+                    <td> feedback
+<%--                       <div class="feedback--popup" id="feedback--popup">--%>
+<%--                           <div class="overlay">--%>
+<%--                              <div class="feedback--popup--content">--%>
+<%--                                  <div class="feedback--popup--close">&times;</div>--%>
+<%--                                  <h1> Feedback </h1>--%>
+<%--                                  <p> feedback content </p>--%>
+<%--                              </div>--%>
+<%--                           </div>--%>
+<%--                           <button onclick="togglePopup()">Show Popup</button>--%>
+
+<%--                           <script>--%>
+<%--                               function togglePopup(){--%>
+<%--                                   document.getElementById("feedback--popup").classList.toggle("active");--%>
+<%--                               }--%>
+<%--                           </script>--%>
+                       </div>
+                    </td>
                     <td><input type="text" placeholder="Not displayed to anyone else">
 
                     </td>
@@ -162,6 +182,7 @@
         </div>
     </div>
 
+</div>
 </div>
 </body>
 </html>
