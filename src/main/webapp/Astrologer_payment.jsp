@@ -95,14 +95,12 @@
             <div class="search--box">
                 <i class="menu-icon fas fa-search"></i>
 
-                <a href="Astrologer_profile.jsp"><img src="images/img.png">
-                </a>
+                <input type="text" placeholder="Search">
             </div>
 
-            <img src="images/img.png">
-
+            <a href="Astrologer_profile.jsp"><img src="images/img.png">
+            </a>
         </div>
-
     </div>
 
     <div class="card--container">
