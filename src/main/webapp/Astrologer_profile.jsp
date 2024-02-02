@@ -14,6 +14,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="styles.css">
     <title>My Profile</title>
 
@@ -223,12 +224,22 @@
 
         <div class="amend">
             <div class="update">
-                <button> Update</button>
+                <button id="updateButton">Update</button>
             </div>
-<%--            <div class="delete">--%>
-<%--                <button> Delete</button>--%>
-<%--            </div>--%>
-        </div>  </div>
+        </div>
+
+        <script>
+            document.getElementById('updateButton').addEventListener('click', function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        </script>
+    </div>
 
     </div>
 

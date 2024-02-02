@@ -54,7 +54,7 @@
 <div class="sidebar">
     <a href="HomePage.jsp">
         <div class="logo">
-        <img src="images/logo.png">
+            <img src="images/logo.png">
 
         </div>
     </a>
