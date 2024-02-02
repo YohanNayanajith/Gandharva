@@ -1,0 +1,488 @@
+/*PROFILE_NAVBAR*/
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box ;
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+body{
+    display: flex;
+}
+
+.sidebar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: whitesmoke;
+    overflow: hidden;
+    transition: null 0.5s linear;
+    background: #24333E;
+
+}
+
+.sidebar:hover{
+    width: 240px;
+    transition: 0.5s;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    margin-left: -8px;
+    width: 10px; !important;/* Adjust width as needed */
+    height: 80px; !important;/* Adjust height as needed */
+
+}
+
+.menu{
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+
+}
+.menu li{
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.menu li:hover, .active{
+    background: lightblue;
+    color: black;
+}
+
+.menu a{
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a:hover, .active{
+    color: black;
+}
+
+.menu a span{
+    overflow: hidden;
+}
+.menu a i {
+    font-size: 1.2rem;
+}
+.logout{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+}
+
+/*main body section*/
+.main--content{
+    position: relative;
+    background: lightgray;
+    width: 100%;
+    padding: 1rem;
+
+}
+
+.header--wrapper img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+
+}
+.header--wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white ;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+}
+
+.header--title{
+    color: #24333E;
+
+}
+.user--info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.search--box{
+    background: rgb(237,237,237);
+    border-radius: 15px;
+    color: #24333E;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+
+
+}
+
+.search--box input{
+    background: transparent;
+    padding: 10px;
+}
+
+.search--box i{
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.search--box i:hover{
+    transform: scale(1.2);
+}
+
+/*ASTROLOGER_DASHBOARD_BODY*/
+/*card container*/
+
+
+.card--container{
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+
+}
+/*.card--container:hover{*/
+/*    cursor: pointer;*/
+/*}*/
+
+.card--wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.main--title{
+    color: #24333E;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+.request--card{
+    margin-top: 10px;
+    background: lightgoldenrodyellow;
+    border-radius: 10px;
+    padding: 1.2rem;
+    width: 290px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    transition: all 0.5s ease-in-out;
+}
+
+.request--card:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.card--header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.amount{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-size: 12px;
+    font-weight: 200;
+}
+.count{
+    font-size: 24px;
+    font-family: "Courier New", courier, monospace;
+    font-weight: 600;
+
+}
+.icon{
+    color: white;
+    padding: 1rem;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    background: red;
+}
+
+.current--date{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 18px;
+    color: #888888;
+    letter-spacing: 2px;
+    font-family: "Courier New", courier, monospace;
+}
+
+/*color css*/
+
+.light-red{
+    background: rgb(255,233,233);
+}
+.light-purple{
+    background: rgb(254, 226,254);
+}
+.light-green{
+    background: rgb(235,254,235);
+}
+.light-blue{
+    background: rgb(236,236,254);
+}
+.dark-red{
+    background-color: red;
+}
+.dark-purple{
+    background-color: purple;
+}
+.dark-green{
+    background-color: green;
+}
+.dark-blue{
+    background-color: blue;
+}
+
+/*tabular section*/
+/*TABLES*/
+
+.tabular--wrapper{
+    background-color: #fff;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.table--container{
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+thead{
+    background-color: #24333E;
+    color: #fff;
+}
+
+th{
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+td{
+    padding: 15px;
+    font-size: 14px;
+}
+td button{
+    background: none;
+    color: green;
+}
+
+
+/*tfoot{*/
+/*    background: #24333E;*/
+/*    font-weight: bold;*/
+/*    color: #fff;*/
+/*}*/
+/*tfoot td{*/
+/*    padding: 15px;*/
+/*}*/
+
+/*ASTROLOGER_PROFILE*/
+
+.amend{
+    margin-left: 45%; /*with delete 550px*/
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.amend .update button{
+    font-family: "monospace",sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    border: 0;
+    background: darkgreen;
+    color: white;
+    padding: 7px 15px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+
+}
+.amend .update button:hover {
+    background: lightgreen;
+    color: black;
+}
+
+.profile--details--container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    /*background-color: #24333E;*/
+}
+
+.profile--details--container--image {
+    /*background-color: #3fb6a8;*/
+}
+
+.profile--details--container--info {
+    /*background-color: darkgreen;*/
+}
+
+.delete button{
+    margin-left: 50%;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    color: #f2f2f2;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+}
+.delete button:hover{
+    background: lightcoral;
+    color: black;
+}
+
+.
+/*.image--wrapper {*/
+/*    height: 130px;*/
+/*    width: 130px;*/
+/*    border-radius: 50%;*/
+/*    position: fixed;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+/*#photo{*/
+/*    width: 130px;*/
+/*    height: 130px;*/
+/*    border-radius:50%;*/
+/*}*/
+/*#file{*/
+/*    display: none;*/
+/*}*/
+/*#upload--button{*/
+/*    position: absolute;*/
+/*    height: 30px;*/
+/*    width: 30px;*/
+/*    padding: 6px 6px;*/
+/*    border-radius: 50%;*/
+/*    cursor: pointer;*/
+/*    color: #fff;*/
+/*    background-color: rgb(173,172,172,0.001);*/
+/*    box-shadow: 2px 4px 4px rgb(0,0,0,0.644);*/
+
+
+/*}*/
+
+
+/*ASTROLOGER_PAYMENT*/
+
+.transaction--statement{
+    cursor: pointer;
+
+}
+
+/*ASTROLOGER_SETTING*/
+
+
+.settings--buttons{
+    border: none;
+    border-radius: 20%;
+    padding: 2rem;
+}
+
+
+/*ASTROLOGER_PENDING*/
+
+.pending--table input{
+    width: 80%;
+    background-color: lightgrey;
+    color: #333333;
+    border: none;
+    padding: 3px;
+    border-radius: 3px;
+
+}
+
+/*ASTROLOGER_LOGOUT*/
+.cards {
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 575px;
+
+}
+
+
+.card {
+    width: 500px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    color:  #24333E;
+
+}
+
+.card-content {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.card-button {
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    background-color: #24333E;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.card-button i {
+    margin-right: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.card--wrapper a{
+
+}
