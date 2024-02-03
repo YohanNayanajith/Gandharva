@@ -25,8 +25,8 @@ import static org.gandharva.gandharva.constants.PasswordHashing.toHexStr;
 public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
-        resp.setContentType("text/plain");
+//        PrintWriter out = resp.getWriter();
+//        resp.setContentType("text/plain");
 //
 //        String pathInfo = req.getPathInfo();
 //        String userType = null;
@@ -68,7 +68,8 @@ public class RegistrationController extends HttpServlet {
 //                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "UserType not found!");
 //                return;
 //        }
-        out.println("1");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("NavigatePage.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     @Override

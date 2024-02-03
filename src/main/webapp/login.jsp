@@ -98,7 +98,7 @@
 <!-- Login Card -->
 <div class="login-card">
   <h2 class="center-elements" style="color: black">Login</h2>
-  <form action="log" method="post">
+  <form action="login" method="post" id="login-form">
     <label for="email" class="center-elements">E-mail  :</label>
     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
     <label for="password" class="center-elements">Password:</label>
@@ -106,8 +106,6 @@
 
     <label for="remember">Remember me</label>
     <input type="checkbox" id="remember" name="remember"><br><br>
-
-
 
     <input type="submit" value="Login" class="login-button"><br><br>
     <a href="forgotPassword.jsp">Forgot Password?</a><br>
@@ -117,4 +115,7 @@
 
 <!-- Add more HTML and CSS as needed for styling and responsiveness -->
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/login.js" defer></script>
 </html>

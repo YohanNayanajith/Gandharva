@@ -57,30 +57,27 @@ public class LoginController extends HttpServlet {
 
             if (checkLogin(login, loginData)) {
                 switch (userType) {
-                    case GUEST_USER:
+                    case PREMIUM_USER:
                         out.print("1");
                         break;
                     case STANDARD_USER:
                         out.print("2");
                         break;
-                    case PREMIUM_USER:
+                    case ASTROLOGER:
                         out.print("3");
                         break;
-                    case ASTROLOGER:
+                    case EVENT_PLANNER:
                         out.print("4");
                         break;
-                    case EVENT_PLANNER:
+                    case ADMIN:
                         out.print("5");
                         break;
-                    case ADMIN:
-                        out.print("6");
-                        break;
                     default:
-                        out.print("7");
+                        out.print("6");
                         break;
                 }
             } else {
-                out.print("8");
+                out.print("6");
             }
 
         } catch (SQLException e) {

@@ -181,18 +181,13 @@
             <li><a href="#">Help</a></li>
         </ul>
         <div class="buttons">
-            <a href="NavigatePage.jsp"> <button class="signin">Sign In </button></a>
+            <a href="login"> <button class="signin">Sign In </button></a>
             <button class="divider"> | </button>
-            <a href="NavigatePage.jsp"> <button class="signup">Sign Up</button> </a>
-
-
-
+            <a href="registration"> <button class="signup">Sign Up</button> </a>
         </div>
     </nav>
 </header>
-
     <button class="find-match"><a href="login.jsp">Find Your Match</a></button>
-
 </body>
 </html>
 
