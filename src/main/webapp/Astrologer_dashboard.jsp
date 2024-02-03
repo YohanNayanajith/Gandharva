@@ -103,8 +103,13 @@
 
     </div>
 
+    <%
+        // Retrieve session attributes
+        String firstName = (String) session.getAttribute("firstName");
+        String lastName = (String) session.getAttribute("lastName");
+    %>
     <div class="card--container">
-        <h3 class="main--title">Today's Data</h3>
+        <h3 class="main--title">Hii! <%= firstName + " " + lastName %></h3>
         <span class="current--date" id="currentDate"> </span>
 
         <!-- JavaScript to get and display the current date -->
@@ -117,7 +122,7 @@
             var formattedDate = currentDate.toLocaleDateString('en-US', options);
 
             // Display the current date in the HTML element with id="currentDate"
-            document.getElementById("currentDate").innerHTML = "As at " + formattedDate;
+            document.getElementById("currentDate").innerHTML = formattedDate;
         </script>
         <div class="card--wrapper">
             <div class="request--card light-red">

@@ -187,7 +187,7 @@
         </div>
     </nav>
 </header>
-    <button class="find-match"><a href="login.jsp">Find Your Match</a></button>
+    <button class="find-match"><a href="login">Find Your Match</a></button>
 </body>
 </html>
 
