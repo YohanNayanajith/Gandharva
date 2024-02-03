@@ -7,26 +7,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
 <html>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="styles.css">
     <title>User Requests</title>
-
 </head>
 <body>
 <div class="sidebar">
     <a href="HomePage.jsp">
         <div class="logo">
             <img src="images/logo.png">
-
         </div>
     </a>
     <ul class="menu">
         <li>
-            <a href="Astrologer_dashboard.jsp" >
+            <a href="Astrologer_dashboard.jsp">
                 <i class="menu-icon fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -34,7 +31,7 @@
         <li>
             <a href="Astrologer_profile.jsp">
                 <i class="menu-icon fas fa-user"></i>
-                <span>Profile </span>
+                <span>Profile</span>
             </a>
         </li>
         <li class="active">
@@ -76,116 +73,65 @@
         <li class="logout">
             <a href="Astrologer_logout.jsp">
                 <i class="menu-icon fas fa-sign-out-alt"></i>
-                <span>logout</span>
+                <span>Logout</span>
             </a>
         </li>
-
-
     </ul>
-
 </div>
 
-<div class="main--content" >
+<div class="main--content">
     <div class="header--wrapper">
         <div class="header--title">
-            <span> User</span>
+            <span>User</span>
             <h2>Requests</h2>
-
         </div>
         <div class="user--info">
             <div class="search--box">
                 <i class="menu-icon fas fa-search"></i>
-
                 <input type="text" placeholder="Search">
             </div>
-
-            <a href="Astrologer_profile.jsp"><img src="images/img.png">
+            <a href="Astrologer_profile.jsp">
+                <img src="images/img.png">
             </a>
-
         </div>
-
     </div>
 
     <div class="card--container">
-<%--        <h3 class="main--title">Today's Data</h3>--%>
-        <span class="current--date" id="currentDate"> </span>
-
+        <span class="current--date" id="currentDate"></span>
         <!-- JavaScript to get and display the current date -->
         <script>
             // Get the current date
             var currentDate = new Date();
-
             // Format the date as desired (e.g., "January 31, 2024")
             var options = { year: 'numeric', month: 'long', day: 'numeric' };
             var formattedDate = currentDate.toLocaleDateString('en-US', options);
-
             // Display the current date in the HTML element with id="currentDate"
             document.getElementById("currentDate").innerHTML = "As at " + formattedDate;
         </script>
 
-    <div class="tabular--wrapper">
-<%--        <h3 class="main--title"> History for past 3 days </h3>--%>
-        <div class="pending--table">
-            <table>
-                <thead>
-                <tr>
-                    <th> Date </th>
-                    <th> Name of the customer</th>
-                    <th> Download Horoscope </th>
-                    <th> Status </th>
-                    <th>Feedbacks for the users</th>
-                    <th> Comments </th>
+        <div class="tabular--wrapper">
+            <div class="pending--table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name of the customer</th>
+                        <th>Download Horoscope</th>
+                        <th>Status</th>
+                        <th>Feedbacks for the users</th>
+                        <th>Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody id="user-request-table">
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        2023-05-01
-                    </td>
-                    <td>
-                        Binali Ukwatte
-                    </td>
-                    <td>
-                        Horoscope
-                    </td>
-                    <td>
-                        Done
-                    </td>
-
-                    <td> feedback
-<%--                       <div class="feedback--popup" id="feedback--popup">--%>
-<%--                           <div class="overlay">--%>
-<%--                              <div class="feedback--popup--content">--%>
-<%--                                  <div class="feedback--popup--close">&times;</div>--%>
-<%--                                  <h1> Feedback </h1>--%>
-<%--                                  <p> feedback content </p>--%>
-<%--                              </div>--%>
-<%--                           </div>--%>
-<%--                           <button onclick="togglePopup()">Show Popup</button>--%>
-
-<%--                           <script>--%>
-<%--                               function togglePopup(){--%>
-<%--                                   document.getElementById("feedback--popup").classList.toggle("active");--%>
-<%--                               }--%>
-<%--                           </script>--%>
-                       </div>
-                    </td>
-                    <td><input type="text" placeholder="Not displayed to anyone else">
-
-                    </td>
-
-
-                </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
-</div>
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/astrologerPending.js" defer></script>
 </html>
-
-
-<%--feedback column--%>

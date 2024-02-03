@@ -127,16 +127,8 @@
         <div class="card--wrapper">
             <div class="request--card light-red">
 <%--                redirect to pending--%>
-                <div class="card--header">
-                    <div class="amount">
-                        <span class="title">
-                            New Requests
-                        </span>
-                        <span class="count">
-                            50 Dummy
-                        </span>
-                    </div>
-                    <i class="icon fas fa-bell"></i>
+                <div class="card--header" id="card-header-value-status-new">
+
                 </div>
                 <%--                <span class="current--date" id="currentDate"> </span>--%>
 
@@ -157,16 +149,8 @@
             </div>
 
             <div class="request--card light-purple">
-                <div class="card--header">
-                    <div class="amount">
-                        <span class="title">
-                            Pending Requests
-                        </span>
-                        <span class="count">
-                            20 Dummy
-                        </span>
-                    </div>
-                    <i class="icon fas fa-hourglass-half dark-purple"></i>
+                <div class="card--header"id="card-header-value-status-accept">
+
                 </div>
                 <%--                <span class="current--date" id="currentDate2"> </span>--%>
 
@@ -187,31 +171,15 @@
             </div>
 
             <div class="request--card light-green">
-                <div class="card--header">
-                    <div class="amount">
-                        <span class="title">
-                            Total cases completed
-                        </span>
-                        <span class="count">
-                            150 Dummy
-                        </span>
-                    </div>
-                    <i class="icon fas fa-circle-check dark-green"></i>
+                <div class="card--header" id="card-header-value-status-done">
+
                 </div>
 
             </div>
 
             <div class="request--card light-blue">
-                <div class="card--header">
-                    <div class="amount">
-                        <span class="title">
-                            Dummy
-                        </span>
-                        <span class="count">
-                            20 Dummy
-                        </span>
-                    </div>
-                    <i class="icon fas fa-hourglass-half dark-blue"></i>
+                <div class="card--header" id="card-header-value-status-decline">
+
                 </div>
             </div>
         </div>
@@ -277,4 +245,7 @@
 
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/astrologerDashboard.js" defer></script>
 </html>
