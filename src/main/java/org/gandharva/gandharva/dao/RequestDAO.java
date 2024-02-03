@@ -90,7 +90,7 @@ public class RequestDAO {
         return pst.executeUpdate() > 0;
     }
 
-    public static List<Request> getRequestsCount(String userId, RequestType requestType) throws SQLException, ClassNotFoundException {
+    public static List<Request> getRequestsByStatus(String userId, RequestType requestType) throws SQLException, ClassNotFoundException {
         List<Request> requests = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM request WHERE userId=? AND status=? ORDER BY deadline DESC";
@@ -115,5 +115,21 @@ public class RequestDAO {
             }
         }
         return requests;
+    }
+
+    public static int getRequestsCount(String userId, RequestType requestType) throws SQLException, ClassNotFoundException {
+        int requestCount = 0;
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "SELECT COUNT(*) as record_count FROM request WHERE userId=? AND status=? ORDER BY deadline DESC";
+        PreparedStatement pst = connection.prepareStatement(query);
+        pst.setString(1,userId);
+        pst.setString(2, String.valueOf(requestType));
+
+        ResultSet resultSet = pst.executeQuery();
+
+        if (resultSet.next()) {
+            requestCount = resultSet.getInt(1);
+        }
+        return requestCount;
     }
 }

@@ -1,21 +1,23 @@
 package org.gandharva.gandharva.controller;
 
-import com.google.gson.Gson;
 import org.gandharva.gandharva.constants.RequestType;
 import org.gandharva.gandharva.dao.RequestDAO;
-import org.gandharva.gandharva.model.Request;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
-public class RequestGetAllCountWithStatusController extends HttpServlet {
+public class RequestCountController extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
+        resp.setContentType("text/plain");
+        
         String pathInfo = req.getPathInfo();
         String requestTypeString = null;
 
@@ -39,12 +41,8 @@ public class RequestGetAllCountWithStatusController extends HttpServlet {
 //        UUID userId = UUID.fromString(idString);
 
         try {
-            List<Request> Requests = RequestDAO.getRequestsCount(userId, requestType);
-            Gson gson = new Gson();
-            String requestJSON = gson.toJson(Requests);
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().write(requestJSON);
+            int requestsCount = RequestDAO.getRequestsCount(userId, requestType);
+            out.print(requestsCount);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

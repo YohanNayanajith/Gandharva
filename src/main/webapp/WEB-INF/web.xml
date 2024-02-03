@@ -101,11 +101,20 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>requestGetAllCountWithStatusController</servlet-name>
-        <servlet-class>org.gandharva.gandharva.controller.RequestGetAllCountWithStatusController</servlet-class>
+        <servlet-name>requestGetAllWithStatusController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.RequestGetAllWithStatusController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>requestGetAllCountWithStatusController</servlet-name>
+        <servlet-name>requestGetAllWithStatusController</servlet-name>
         <url-pattern>/request/getAll/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>requestCountController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.RequestCountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>requestCountController</servlet-name>
+        <url-pattern>/request/count/*</url-pattern>
     </servlet-mapping>
 </web-app>
