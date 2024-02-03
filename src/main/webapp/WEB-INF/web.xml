@@ -81,4 +81,31 @@
         <servlet-name>adminController</servlet-name>
         <url-pattern>/admin</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>requestController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.RequestController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>requestController</servlet-name>
+        <url-pattern>/request</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>requestGetAllController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.RequestGetAllController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>requestGetAllController</servlet-name>
+        <url-pattern>/request/getAll</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>requestGetAllCountWithStatusController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.RequestGetAllCountWithStatusController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>requestGetAllCountWithStatusController</servlet-name>
+        <url-pattern>/request/getAll/*</url-pattern>
+    </servlet-mapping>
 </web-app>
