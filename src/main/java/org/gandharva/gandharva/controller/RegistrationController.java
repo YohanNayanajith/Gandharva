@@ -25,7 +25,51 @@ import static org.gandharva.gandharva.constants.PasswordHashing.toHexStr;
 public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Registration Page");
+//        PrintWriter out = resp.getWriter();
+//        resp.setContentType("text/plain");
+//
+//        String pathInfo = req.getPathInfo();
+//        String userType = null;
+//
+//        String[] pathParts = pathInfo.split("/");
+//        if (pathParts.length > 1) {
+//            userType = pathParts[1];
+//        }
+//        System.out.println("Registration Page get call");
+//        System.out.println("User Type: "+userType);
+//
+//        UserType userTypeEnum = null;
+//
+//        try {
+//            assert userType != null;
+//            userTypeEnum = UserType.valueOf(userType.toUpperCase());
+//        } catch (IllegalArgumentException e) {
+//            System.out.println("Exception caught: " + e.getMessage());
+//            resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "UserType cannot be null!");
+//            return;
+//        }
+//
+//        switch (userTypeEnum) {
+//            case USER:
+//                System.out.println("Guest User");
+//                resp.sendRedirect("user.jsp");
+//                break;
+//            case ASTROLOGER:
+//                System.out.println("Astrologer User");
+//                resp.sendRedirect("astrologer");
+//                break;
+//            case EVENT_PLANNER:
+//                System.out.println("Event Planner User");
+//                resp.sendRedirect("eventPlanner.jsp");
+//                break;
+//            default:
+//                System.out.println();
+////                out.print("0");
+//                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "UserType not found!");
+//                return;
+//        }
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("NavigatePage.jsp");
+        requestDispatcher.forward(req,resp);
     }
 
     @Override
@@ -60,6 +104,8 @@ public class RegistrationController extends HttpServlet {
 
         switch (userTypeEnum) {
             case USER:
+            case STANDARD_USER:
+            case PREMIUM_USER:
                 System.out.println("User");
                 String nic = req.getParameter("nic");
                 LocalDate birthday = LocalDate.parse(req.getParameter("birthday"));
@@ -85,7 +131,7 @@ public class RegistrationController extends HttpServlet {
                     throw new RuntimeException(e);
                 }
                 break;
-            case EVENT_PLANER:
+            case EVENT_PLANNER:
                 System.out.println("Event Planner User");
                 int numberOfCasesHandledByEP = Integer.parseInt(req.getParameter("numberOfCasesHandled"));
                 int yearsOfExperienceByEP = Integer.parseInt(req.getParameter("yearsOfExperience"));

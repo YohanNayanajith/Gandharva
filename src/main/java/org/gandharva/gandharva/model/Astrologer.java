@@ -15,6 +15,11 @@ public class Astrologer extends ParentUser {
         this.certificateFileUpload = certificateFileUpload;
     }
 
+    public Astrologer(ParentUser parentUser){
+        super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
+                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
+    }
+
     public Astrologer(ParentUser parentUser, int numberOfCasesHandled, int yearsOfExperience, byte[] certificateFileUpload) {
         super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
                 parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
