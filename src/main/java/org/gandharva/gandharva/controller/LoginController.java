@@ -48,11 +48,12 @@ public class LoginController extends HttpServlet {
             assert loginData != null;
 
             HttpSession session = req.getSession(true);
-            session.setAttribute("id", loginData.getId());
+            session.setAttribute("id", loginData.getId().toString());
             session.setAttribute("firstName", loginData.getFirstName());
             session.setAttribute("lastName", loginData.getLastName());
             session.setAttribute("userType", loginData.getUserType());
 
+            System.out.println(loginData.getId().toString());
             UserType userType = loginData.getUserType();
 
             if (checkLogin(login, loginData)) {
