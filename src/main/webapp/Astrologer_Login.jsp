@@ -146,7 +146,6 @@
         }
 
 
-
         .heading {
             text-align: center;
         }
@@ -165,6 +164,7 @@
         .link a:hover {
             text-decoration: underline;
         }
+
         .proceed {
             font-size: large;
             background-color: rgba(255, 255, 255, 0.4);
@@ -180,6 +180,7 @@
             background-color: rgba(255, 255, 255, 0.2);
             text-decoration: underline;
         }
+
         a {
             color: black;
             text-decoration: none;
@@ -189,12 +190,13 @@
             text-decoration: underline;
         }
 
-        .input-field{
+        .input-field {
             border-color: black;
             border-radius: 5px;
             padding: 5px;
             align: left;
         }
+
         label {
             display: flex;
             align-items: center; /* Align items vertically */
@@ -203,6 +205,7 @@
         label input[type="checkbox"] {
             margin-right: 5px;
         }
+
         .form-group {
             display: flex;
             align-items: center;
@@ -213,7 +216,7 @@
             margin-right: 5px;
         }
 
-        .remember{
+        .remember {
             margin-top: 5px;
             opacity: 0.75;
         }
@@ -227,7 +230,7 @@
 <header>
     <nav>
         <div class="logo">
-            <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo" ></a>
+            <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo"></a>
         </div>
         <ul class="navbar">
             <li><a href="#">About Us</a></li>
@@ -242,8 +245,12 @@
         </ul>
 
         <div class="buttons">
-            <a href="Astrologer_Login.jsp"> <button class="signin">Sign In </button></a>
-            <a href="Astrologer_Registration.jsp"><button class="signup"> |  Sign Up </button> </a>
+            <a href="Astrologer_Login.jsp">
+                <button class="signin">Sign In</button>
+            </a>
+            <a href="Astrologer_Registration.jsp">
+                <button class="signup"> | Sign Up</button>
+            </a>
         </div>
 
 
@@ -255,13 +262,12 @@
         <h1 class="heading">Astrologer Login</h1>
         <br>
         <br>
-        <form action="astrologerLogin" method="POST">
+        <form action="astrologerLogin" method="POST" id="login-form">
             <label for="email">Email: </label><br>
             <input type="text" id="email" name="email" class="input-field" placeholder="example@email.com" required><br><br>
 
-
             <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password" class="input-field"  required><br><br>
+            <input type="password" id="password" name="password" class="input-field" required><br><br>
 
             <div class="remember">
                 <label for="remember">
@@ -273,16 +279,14 @@
             <br>
             <input type="submit" class="proceed" id="proceedBtn" name="proceed" value="Submit">
             <br>
-
-
-
-
             <br>
-                <a href="forgotPassword.jsp" id="link">Forgot Password?</a>
+            <a href="forgotPassword.jsp" id="link">Forgot Password?</a>
 
         </form>
     </div>
 </div>
-
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/login.js" defer></script>
 </html>

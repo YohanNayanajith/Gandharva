@@ -98,7 +98,7 @@
 <!-- Login Card -->
 <div class="login-card">
   <h2 class="center-elements" style="color: black">Login</h2>
-  <form action="login" method="post" id="login-form">
+  <form action="login" method="post" id="login-form1">
     <label for="email" class="center-elements">E-mail  :</label>
     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
     <label for="password" class="center-elements">Password:</label>
