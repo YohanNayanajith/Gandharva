@@ -49,7 +49,7 @@ public class RequestController extends HttpServlet {
 //            return;
 //        }
 
-        String idString = "5c0481a1-dbb5-4b7d-ab80-e6fd26b9828d";
+        String idString = "fa993a0b-fe39-4df9-b7f6-183084c5d24c";
         UUID userId = UUID.fromString(idString);
 
         var request = new Request(startDate,deadline,horoscope,status,comments,feedback,userId);

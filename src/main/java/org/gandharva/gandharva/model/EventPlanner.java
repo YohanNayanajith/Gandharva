@@ -16,7 +16,7 @@ public class EventPlanner extends ParentUser {
     }
 
     public EventPlanner(ParentUser parentUser){
-        super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
+        super(parentUser.getId(), parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
                 parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
     }
 

@@ -16,14 +16,16 @@ public class RequestGetAllController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-//        String userId = (String) session.getAttribute("id");
-//
-//        if (session.getAttribute("id") == null) {
-//            resp.sendRedirect("Astrologer_Login.jsp");
-//            return;
-//        }
+        String userId = (String) session.getAttribute("id");
 
-        String userId = "5c0481a1-dbb5-4b7d-ab80-e6fd26b9828d";
+        System.out.println("UserId: "+userId);
+
+        if (session.getAttribute("id") == null) {
+            resp.sendRedirect("Astrologer_Login.jsp");
+            return;
+        }
+
+//        String userId = "fa993a0b-fe39-4df9-b7f6-183084c5d24c";
 //        UUID userId = UUID.fromString(idString);
 
         try {

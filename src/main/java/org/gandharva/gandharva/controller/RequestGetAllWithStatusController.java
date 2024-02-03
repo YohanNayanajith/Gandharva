@@ -28,14 +28,14 @@ public class RequestGetAllWithStatusController extends HttpServlet {
         RequestType requestType = RequestType.valueOf(requestTypeString);
 
         HttpSession session = req.getSession();
-//        String userId = (String) session.getAttribute("id");
-//
-//        if (session.getAttribute("id") == null) {
-//            resp.sendRedirect("Astrologer_Login.jsp");
-//            return;
-//        }
+        String userId = (String) session.getAttribute("id");
 
-        String userId = "5c0481a1-dbb5-4b7d-ab80-e6fd26b9828d";
+        if (session.getAttribute("id") == null) {
+            resp.sendRedirect("Astrologer_Login.jsp");
+            return;
+        }
+
+//        String userId = "5c0481a1-dbb5-4b7d-ab80-e6fd26b9828d";
 //        UUID userId = UUID.fromString(idString);
 
         try {

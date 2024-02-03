@@ -27,6 +27,17 @@ public class ParentUser {
         this.district = district;
     }
 
+    public ParentUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
+        this.email = email;
+        this.password = password;
+        this.countryOfResidence = countryOfResidence;
+        this.district = district;
+    }
+
     public UUID getId() {
         return id;
     }
