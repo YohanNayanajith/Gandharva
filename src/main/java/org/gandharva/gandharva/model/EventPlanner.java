@@ -15,6 +15,11 @@ public class EventPlanner extends ParentUser {
         this.brFileUpload = brFileUpload;
     }
 
+    public EventPlanner(ParentUser parentUser){
+        super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
+                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
+    }
+
     public EventPlanner(ParentUser parentUser, int numberOfCasesHandled, int yearsOfExperience, byte[] brFileUpload) {
         super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
                 parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());

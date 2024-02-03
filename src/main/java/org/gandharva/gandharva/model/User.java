@@ -1,7 +1,5 @@
 package org.gandharva.gandharva.model;
 
-import org.gandharva.gandharva.constants.UserType;
-
 import java.time.LocalDate;
 
 public class User extends ParentUser {
@@ -13,6 +11,11 @@ public class User extends ParentUser {
     public User(String nic, LocalDate birthday) {
         this.nic = nic;
         this.birthday = birthday;
+    }
+
+    public User(ParentUser parentUser){
+        super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
+                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
     }
 
     public User(ParentUser parentUser, String nic, LocalDate birthday) {

@@ -9,5 +9,8 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
+<a href="registration/ASTROLOGER">Astrologer</a>
+<a href="registration/EVENT_PLANER">Event Planner</a>
+<a href="registration/USER">User</a>
 </body>
 </html>
