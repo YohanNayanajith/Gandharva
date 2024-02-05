@@ -107,9 +107,11 @@
         // Retrieve session attributes
         String firstName = (String) session.getAttribute("firstName");
         String lastName = (String) session.getAttribute("lastName");
+        System.out.println(firstName);
     %>
+
     <div class="card--container">
-        <h3 class="main--title">Hii! <%= firstName + " " + lastName %></h3>
+        <h3 class="main--title">Welcome! <%= firstName + " " + lastName %></h3>
         <span class="current--date" id="currentDate"> </span>
 
         <!-- JavaScript to get and display the current date -->

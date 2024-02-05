@@ -157,52 +157,11 @@
             document.getElementById("currentDate").innerHTML = "As at " + formattedDate;
         </script>
 
-            <div class="calendar">
-                <div class="header">
-                    <h2>Calendar Schedule</h2>
-                </div>
-                <div class="body">
-                    <div id="calendar"></div>
-                </div>
+
+            <div class="google--calender">
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&bgcolor=%23ffffff&ctz=Asia%2FColombo&mode=MONTH&showPrint=0&showTitle=0&src=ZW4ubGsjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
             </div>
-
-            <script>
-
-            document.addEventListener('DOMContentLoaded', function() {
-            const calendar = document.getElementById('calendar');
-            const events = [];
-
-            function renderEvents() {
-            calendar.innerHTML = '';
-            events.forEach(function(event, index) {
-            const eventElement = document.createElement('div');
-            eventElement.className = 'event';
-            eventElement.innerHTML = event.name + '<span class="delete-btn" data-index="' + index + '">x</span>';
-            calendar.appendChild(eventElement);
-            });
-            }
-
-            calendar.addEventListener('click', function(event) {
-            if (event.target.classList.contains('delete-btn')) {
-            const index = event.target.dataset.index;
-            events.splice(index, 1);
-            renderEvents();
-            }
-            });
-
-            document.getElementById('addEvent').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const eventName = this.querySelector('input').value.trim();
-            if (eventName !== '') {
-            events.push({ name: eventName });
-            renderEvents();
-            this.reset();
-            }
-            });
-            });
-            </script>
-
-
 
         <%--        <div class="tabular--wrapper">--%>
 <%--            &lt;%&ndash;        <h3 class="main--title"> History for past 3 days </h3>&ndash;%&gt;--%>

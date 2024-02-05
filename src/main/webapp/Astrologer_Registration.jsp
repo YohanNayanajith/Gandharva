@@ -238,7 +238,7 @@
         <br>
         <p class="step-text">Step 1 of 2</p>
         <br>
-        <form action="astrologerRegistration" method="POST" enctype="multipart/form-data">
+        <form action="astrologer" method="POST" enctype="multipart/form-data">
             <label for="first_name">First Name:</label><br>
             <input type="text" id="first_name" name="first_name" class="input-field" required><br><br>
 
