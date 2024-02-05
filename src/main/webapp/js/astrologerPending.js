@@ -10,8 +10,8 @@ $(document).ready(function () {
                         $('#user-request-table').append(
                             `<tr>
                                 <td>${x.startDate}</td>
-                                <td>Binali</td>
-                                <td>Horoscope</td>
+                                <td>${x.firstName} ${x.lastName}</td>
+                                <td>Horoscope1</td>
                                 <td>${x.status}</td>
                                 <td>
                                     ${x.feedback}

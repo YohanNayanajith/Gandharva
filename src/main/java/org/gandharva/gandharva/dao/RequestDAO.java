@@ -3,6 +3,7 @@ package org.gandharva.gandharva.dao;
 import org.gandharva.gandharva.constants.RequestType;
 import org.gandharva.gandharva.database.DBConnection;
 import org.gandharva.gandharva.model.Request;
+import org.gandharva.gandharva.model.RequestUserDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,7 +55,9 @@ public class RequestDAO {
     public static List<Request> getRequests(String userId) throws SQLException, ClassNotFoundException {
         List<Request> requests = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT * FROM request WHERE userId=? ORDER BY deadline DESC";
+        String query = "SELECT R.id, R.startDate, R.deadline, R.horoscope, R.status, R.comments, R.feedback, R.userId, U.firstName, U.lastName, U.email, U.userType FROM request R\n" +
+                "INNER JOIN user U ON U.id = R.userId \n" +
+                "WHERE userId=? ORDER BY deadline DESC;";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,userId);
 
@@ -62,7 +65,7 @@ public class RequestDAO {
 
         while (resultSet.next()) {
             if(resultSet != null) {
-                requests.add(new Request(
+                requests.add(new RequestUserDAO(
                         UUID.fromString(resultSet.getString(1)),
                         resultSet.getDate(2),
                         resultSet.getDate(3),
@@ -70,7 +73,11 @@ public class RequestDAO {
                         RequestType.valueOf(resultSet.getString(5)),
                         resultSet.getString(6),
                         resultSet.getString(7),
-                        UUID.fromString(resultSet.getString(8))
+                        UUID.fromString(resultSet.getString(8)),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getString(11),
+                        resultSet.getString(12)
                 ));
             }
         }
