@@ -19,7 +19,6 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="styles.css">
   <title>Logout</title>
 
@@ -131,24 +130,9 @@
 <%--  </div>--%>
 <%--</div>--%>
 <%--</div>--%>
-<script>
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You would be signed out!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes!"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      window.location.href = "HomePage.jsp";
-    }else{
-      window.location.href = "Astrologer_dashboard.jsp";
-    }
-  });
-</script>
-
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/astrologerLogout.js" defer></script>
 </html>
 
