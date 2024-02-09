@@ -1,5 +1,8 @@
 package org.gandharva.gandharva.controller;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.gandharva.gandharva.constants.UserType;
 import org.gandharva.gandharva.dao.AuthDao;
 import org.gandharva.gandharva.model.Astrologer;
@@ -9,19 +12,25 @@ import org.gandharva.gandharva.model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.List;
 
 import static org.gandharva.gandharva.constants.PasswordHashing.obtainSHA;
 import static org.gandharva.gandharva.constants.PasswordHashing.toHexStr;
 
+@MultipartConfig
 public class RegistrationController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -68,6 +77,7 @@ public class RegistrationController extends HttpServlet {
 //                resp.sendError(HttpServletResponse.SC_NOT_FOUND, "UserType not found!");
 //                return;
 //        }
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("NavigatePage.jsp");
         requestDispatcher.forward(req,resp);
     }
@@ -85,6 +95,7 @@ public class RegistrationController extends HttpServlet {
         String countryOfResidence = req.getParameter("countryOfResidence");
         String district = req.getParameter("district");
 
+        System.out.println("FirstName "+ firstName);
         System.out.println("UserType "+ userType);
 
         try {
@@ -121,8 +132,34 @@ public class RegistrationController extends HttpServlet {
                 System.out.println("Astrologer User");
                 int numberOfCasesHandled = Integer.parseInt(req.getParameter("numberOfCasesHandled"));
                 int yearsOfExperience = Integer.parseInt(req.getParameter("yearsOfExperience"));
-                String certificateFileData = req.getParameter("certificateFileUpload");
-                byte[] certificateFileUpload = Base64.getDecoder().decode(certificateFileData);
+                Part filePart = req.getPart("certificateFileUpload");
+                byte[] certificateFileUpload = null;
+                if (filePart != null) {
+                    System.out.println("File part is not null!");
+                    InputStream fileContent = filePart.getInputStream();
+                    certificateFileUpload = fileContent.readAllBytes();
+                }
+
+                System.out.println(Arrays.toString(certificateFileUpload));
+                // Handle file upload here
+//                byte[] certificateFileUpload = null;
+//                boolean isMultipart = ServletFileUpload.isMultipartContent(req);
+//                if (isMultipart) {
+//                    DiskFileItemFactory factory = new DiskFileItemFactory();
+//                    ServletFileUpload upload = new ServletFileUpload(factory);
+//
+//                    try {
+//                        List<FileItem> items = upload.parseRequest(req);
+//                        for (FileItem item : items) {
+//                            if (!item.isFormField() && item.getFieldName().equals("certificateFileUpload")) {
+//                                certificateFileUpload = item.get(); // This is your file data
+//                            }
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//                System.out.println(Arrays.toString(certificateFileUpload));
 
                 Astrologer astrologer = new Astrologer(parentUser,numberOfCasesHandled,yearsOfExperience,certificateFileUpload);
                 try {

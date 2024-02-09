@@ -238,7 +238,7 @@
         <br>
         <p class="step-text">Step 1 of 2</p>
         <br>
-        <form action="astrologer" method="POST" enctype="multipart/form-data">
+        <form enctype="multipart/form-data" id="registration-form">
             <label for="first_name">First Name:</label><br>
             <input type="text" id="first_name" name="first_name" class="input-field" required><br><br>
 
@@ -298,11 +298,6 @@
             <input type="file" id="certificates" name="certificate" class="input-field" accept=".pdf, .jpg, .png" multiple><br><br>
             <input type="submit" class="proceed" id="proceedBtn" name="proceed" value="Proceed">
 
-
-
-
-
-
             <br>
             <br>
             <br>
@@ -338,4 +333,8 @@
 </script>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="js/astrologerRegistration.js" defer></script>
 </html>
