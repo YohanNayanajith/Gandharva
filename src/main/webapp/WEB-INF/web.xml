@@ -38,6 +38,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.LogOutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>org.gandharva.gandharva.controller.RegistrationController</servlet-class>
     </servlet>
