@@ -20,11 +20,12 @@ public class AllUser {
     private int yearsOfExperience;
     private byte[] certificateFileUpload;
     private byte[] brFileUpload;
+    private byte[] userImage;
 
     public AllUser() {
     }
 
-    public AllUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district, String nic, LocalDate birthday, int numberOfCasesHandled, int yearsOfExperience, byte[] certificateFileUpload, byte[] brFileUpload) {
+    public AllUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district, String nic, LocalDate birthday, int numberOfCasesHandled, int yearsOfExperience, byte[] certificateFileUpload, byte[] brFileUpload, byte[] userImage) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,6 +40,7 @@ public class AllUser {
         this.yearsOfExperience = yearsOfExperience;
         this.certificateFileUpload = certificateFileUpload;
         this.brFileUpload = brFileUpload;
+        this.userImage = userImage;
     }
 
     public UUID getId() {
@@ -151,5 +153,13 @@ public class AllUser {
 
     public void setBrFileUpload(byte[] brFileUpload) {
         this.brFileUpload = brFileUpload;
+    }
+
+    public byte[] getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
     }
 }

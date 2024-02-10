@@ -2,31 +2,31 @@ package org.gandharva.gandharva.controller;
 
 import org.gandharva.gandharva.dao.AuthDao;
 import org.gandharva.gandharva.model.AllUser;
-import org.gandharva.gandharva.model.Astrologer;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
 
 @MultipartConfig
-public class UpdateAstrologerDetailsController extends HttpServlet {
+public class UpdateProfileImageController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         resp.setContentType("text/plain");
 
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String district = req.getParameter("district");
-        String email = req.getParameter("email");
-        int yearsOfExperience = Integer.parseInt(req.getParameter("yearsOfExperience"));
+        Part filePart = req.getPart("userImage");
+        byte[] userImage = null;
+        if (filePart != null) {
+            System.out.println("File part is not null!");
+            InputStream fileContent = filePart.getInputStream();
+            userImage = fileContent.readAllBytes();
+        }
 
         HttpSession session = req.getSession();
         String idString = (String) session.getAttribute("id");
@@ -37,18 +37,9 @@ public class UpdateAstrologerDetailsController extends HttpServlet {
             return;
         }
 
-        Astrologer astrologer = new Astrologer();
-        astrologer.setId(userId);
-        astrologer.setFirstName(firstName);
-        astrologer.setLastName(lastName);
-        astrologer.setDistrict(district);
-        astrologer.setEmail(email);
-        astrologer.setYearsOfExperience(yearsOfExperience);
-
         boolean success = false;
         try {
-            success = AuthDao.updateAstrologer(astrologer);
-
+            success = AuthDao.updateProfileImage(idString,userImage);
             AllUser allUser = AuthDao.getUser(idString);
 
             switch (Objects.requireNonNull(allUser).getUserType()){

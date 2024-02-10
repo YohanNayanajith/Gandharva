@@ -73,8 +73,6 @@ public class LoginController extends HttpServlet {
                         out.print("2");
                         break;
                     case ASTROLOGER:
-                        System.out.println("Years of experience: "+ allUser.getYearsOfExperience());
-                        System.out.println("Number of cases: "+ allUser.getNumberOfCasesHandled());
                         session.setAttribute("astrologer", allUser);
                         out.print("3");
                         break;

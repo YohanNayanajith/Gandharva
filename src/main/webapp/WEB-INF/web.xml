@@ -144,4 +144,13 @@
         <servlet-name>updateAstrologerPasswordController</servlet-name>
         <url-pattern>/astrologer/update/password</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateProfileImageController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateProfileImageController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateProfileImageController</servlet-name>
+        <url-pattern>/astrologer/update/image</url-pattern>
+    </servlet-mapping>
 </web-app>

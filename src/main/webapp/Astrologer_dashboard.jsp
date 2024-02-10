@@ -1,4 +1,5 @@
-<%--
+<%@ page import="org.gandharva.gandharva.model.AllUser" %>
+<%@ page import="java.util.Base64" %><%--
   Created by IntelliJ IDEA.
   User: Binali Ukwatte
   Date: 31-01-2024
@@ -84,6 +85,13 @@
 </div>
 
 <div class="main--content" >
+    <%
+        AllUser astrologer = (AllUser) session.getAttribute("astrologer");
+        byte[] blobData = astrologer.getUserImage();
+
+        // Encode byte array to Base64
+        String base64Image = Base64.getEncoder().encodeToString(blobData);
+    %>
     <div class="header--wrapper">
         <div class="header--title">
             <span> Primary</span>
@@ -97,7 +105,8 @@
                 <input type="text" placeholder="Search">
             </div>
 
-            <a href="Astrologer_profile.jsp"><img src="images/img.png">
+            <a href="Astrologer_profile.jsp">
+                <img src="data:image/png;base64, <%= base64Image %>" alt="User Image">
             </a>
         </div>
 

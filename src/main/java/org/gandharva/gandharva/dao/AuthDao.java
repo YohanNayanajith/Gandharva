@@ -86,6 +86,7 @@ public class AuthDao {
             allUser.setPassword(resultSet.getString(6));
             allUser.setCountryOfResidence(resultSet.getString(7));
             allUser.setDistrict(resultSet.getString(8));
+            allUser.setUserImage(resultSet.getBytes(15));
 
             if(allUser.getUserType().equals(UserType.USER) || allUser.getUserType().equals(UserType.PREMIUM_USER) || allUser.getUserType().equals(UserType.STANDARD_USER)){
                 allUser.setNic(resultSet.getString(9));
@@ -128,6 +129,17 @@ public class AuthDao {
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, password);
+        pst.setString(2, id);
+
+        return pst.executeUpdate() > 0;
+    }
+
+    public static boolean updateProfileImage(String id, byte[] userImage) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE user SET userImage=? WHERE id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setBytes(1, userImage);
         pst.setString(2, id);
 
         return pst.executeUpdate() > 0;

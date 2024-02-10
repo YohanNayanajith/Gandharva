@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.Base64" %>
+<%@ page import="org.gandharva.gandharva.model.AllUser" %>
 <%--
   Created by IntelliJ IDEA.
   User: Binali Ukwatte
@@ -94,6 +96,13 @@
         <img src="images/logo.png" alt="Logo">
     </div>
     </a>
+    <%
+        AllUser astrologer = (AllUser) session.getAttribute("astrologer");
+        byte[] blobData = astrologer.getUserImage();
+
+        // Encode byte array to Base64
+        String base64Image = Base64.getEncoder().encodeToString(blobData);
+    %>
     <ul class="menu">
         <li>
             <a href="Astrologer_dashboard.jsp" >
@@ -171,7 +180,7 @@
                 <input type="text" placeholder="Search">
             </div>
 
-            <img src="images/img.png">
+            <img src="data:image/png;base64, <%= base64Image %>" alt="User Image">
 
         </div>
 
@@ -198,10 +207,11 @@
     <div class="header--wrapper">
         <div class="profile--details--container">
             <div class="profile--details--container--image">
+
                 <div class="image--wrapper" >
-                    <img src="images/img.png" id="photo">
-                    <input type="file" id="file">
-                    <label for="file" id="upload--button"> <i class="fas fa-camera" style="color: black"></i></label>
+                    <img src="data:image/png;base64, <%= base64Image %>" alt="User Image" id="photo">
+                    <input type="file" id="profile-image" name="profile-image">
+                    <label for="profile-image" id="upload--button"> <i class="fas fa-camera" style="color: black"></i></label>
                 </div>
             </div>
 
@@ -225,7 +235,10 @@
 
         <div class="amend">
             <div class="update">
-                <button id="updateButton" onclick="updateFormSubmit()">Update</button>
+                <button onclick="updateProfileImage()">Update Image</button>
+            </div>
+            <div class="update">
+                <button id="updateButton" onclick="updateFormSubmit()">Update Profile</button>
             </div>
         </div>
     </div>
