@@ -1,17 +1,19 @@
 package org.gandharva.gandharva.controller;
 
+import org.gandharva.gandharva.constants.UserType;
 import org.gandharva.gandharva.dao.AuthDao;
 import org.gandharva.gandharva.model.Astrologer;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.UUID;
 
-public class UpdateAstrologerDetails extends HttpServlet {
+public class UpdateAstrologerDetailsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
@@ -23,7 +25,17 @@ public class UpdateAstrologerDetails extends HttpServlet {
         String email = req.getParameter("email");
         int yearsOfExperience = Integer.parseInt(req.getParameter("yearsOfExperience"));
 
+        HttpSession session = req.getSession();
+        String idString = (String) session.getAttribute("id");
+        UUID userId = UUID.fromString(idString);
+
+        if(session.getAttribute("id") == null) {
+            resp.sendRedirect("Astrologer_Login.jsp");
+            return;
+        }
+
         Astrologer astrologer = new Astrologer();
+        astrologer.setId(userId);
         astrologer.setFirstName(firstName);
         astrologer.setLastName(lastName);
         astrologer.setDistrict(district);

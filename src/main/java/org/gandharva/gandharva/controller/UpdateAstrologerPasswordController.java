@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import static org.gandharva.gandharva.constants.PasswordHashing.obtainSHA;
 import static org.gandharva.gandharva.constants.PasswordHashing.toHexStr;
 
-public class UpdateAstrologerPassword extends HttpServlet {
+public class UpdateAstrologerPasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();

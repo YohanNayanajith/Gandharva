@@ -126,4 +126,22 @@
         <servlet-name>requestCountController</servlet-name>
         <url-pattern>/request/count/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateAstrologerDetailsController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateAstrologerDetailsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateAstrologerDetailsController</servlet-name>
+        <url-pattern>/astrologer/update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateAstrologerPasswordController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateAstrologerPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateAstrologerPasswordController</servlet-name>
+        <url-pattern>/astrologer/update/password</url-pattern>
+    </servlet-mapping>
 </web-app>

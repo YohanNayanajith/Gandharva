@@ -68,8 +68,8 @@ public class AuthDao {
         return pst.executeUpdate() > 0;
     }
 
-    public static ParentUser getUser(String id) throws SQLException, ClassNotFoundException {
-        ParentUser parentUser = new ParentUser();
+    public static AllUser getUser(String id) throws SQLException, ClassNotFoundException {
+        AllUser allUser = new AllUser();
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM user WHERE id=?";
         PreparedStatement pst = connection.prepareStatement(query);
@@ -78,34 +78,30 @@ public class AuthDao {
         ResultSet resultSet = pst.executeQuery();
 
         if (resultSet.next()) {
-            parentUser.setId(UUID.fromString(resultSet.getString(1)));
-            parentUser.setFirstName(resultSet.getString(2));
-            parentUser.setLastName(resultSet.getString(3));
-            parentUser.setEmail(resultSet.getString(4));
-            parentUser.setUserType(UserType.valueOf(resultSet.getString(5)));
-            parentUser.setPassword(resultSet.getString(6));
-            parentUser.setCountryOfResidence(resultSet.getString(7));
-            parentUser.setDistrict(resultSet.getString(8));
+            allUser.setId(UUID.fromString(resultSet.getString(1)));
+            allUser.setFirstName(resultSet.getString(2));
+            allUser.setLastName(resultSet.getString(3));
+            allUser.setEmail(resultSet.getString(4));
+            allUser.setUserType(UserType.valueOf(resultSet.getString(5)));
+            allUser.setPassword(resultSet.getString(6));
+            allUser.setCountryOfResidence(resultSet.getString(7));
+            allUser.setDistrict(resultSet.getString(8));
 
-            if(parentUser.getUserType().equals(UserType.USER) || parentUser.getUserType().equals(UserType.PREMIUM_USER) || parentUser.getUserType().equals(UserType.STANDARD_USER)){
-                User user = new User(parentUser);
-                user.setNic(resultSet.getString(9));
-                user.setBirthday(resultSet.getDate(10).toLocalDate());
-                return user;
-            } else if (parentUser.getUserType().equals(UserType.ASTROLOGER)) {
-                Astrologer astrologer = new Astrologer(parentUser);
-                astrologer.setNumberOfCasesHandled(resultSet.getInt(9));
-                astrologer.setYearsOfExperience(resultSet.getInt(10));
-                astrologer.setCertificateFileUpload(resultSet.getBytes(11));
-                return astrologer;
-            } else if (parentUser.getUserType().equals(UserType.EVENT_PLANNER)) {
-                EventPlanner eventPlanner = new EventPlanner(parentUser);
-                eventPlanner.setNumberOfCasesHandled(resultSet.getInt(9));
-                eventPlanner.setYearsOfExperience(resultSet.getInt(10));
-                eventPlanner.setBrFileUpload(resultSet.getBytes(11));
+            if(allUser.getUserType().equals(UserType.USER) || allUser.getUserType().equals(UserType.PREMIUM_USER) || allUser.getUserType().equals(UserType.STANDARD_USER)){
+                allUser.setNic(resultSet.getString(9));
+                allUser.setBirthday(resultSet.getDate(10).toLocalDate());
+            } else if (allUser.getUserType().equals(UserType.ASTROLOGER)) {
+                allUser.setNumberOfCasesHandled(resultSet.getInt(11));
+                allUser.setYearsOfExperience(resultSet.getInt(12));
+                allUser.setCertificateFileUpload(resultSet.getBytes(13));
+            } else if (allUser.getUserType().equals(UserType.EVENT_PLANNER)) {
+                allUser.setNumberOfCasesHandled(resultSet.getInt(11));
+                allUser.setYearsOfExperience(resultSet.getInt(12));
+                allUser.setBrFileUpload(resultSet.getBytes(14));
             }else {
                 throw new RuntimeException("UserType not present in the database");
             }
+            return allUser;
         }
 
         return null;

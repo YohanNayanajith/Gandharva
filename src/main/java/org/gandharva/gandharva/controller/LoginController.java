@@ -1,7 +1,10 @@
 package org.gandharva.gandharva.controller;
 
 import org.gandharva.gandharva.constants.UserType;
+import org.gandharva.gandharva.dao.AuthDao;
 import org.gandharva.gandharva.dao.LoginDAO;
+import org.gandharva.gandharva.model.AllUser;
+import org.gandharva.gandharva.model.Astrologer;
 import org.gandharva.gandharva.model.Login;
 import org.gandharva.gandharva.model.ParentUser;
 
@@ -57,21 +60,30 @@ public class LoginController extends HttpServlet {
             System.out.println(loginData.getId().toString());
             UserType userType = loginData.getUserType();
 
+            AllUser allUser = AuthDao.getUser(loginData.getId().toString());
+
             if (checkLogin(login, loginData)) {
                 switch (userType) {
                     case PREMIUM_USER:
+                        session.setAttribute("premiumUser", allUser);
                         out.print("1");
                         break;
                     case STANDARD_USER:
+                        session.setAttribute("standardUser", allUser);
                         out.print("2");
                         break;
                     case ASTROLOGER:
+                        System.out.println("Years of experience: "+ allUser.getYearsOfExperience());
+                        System.out.println("Number of cases: "+ allUser.getNumberOfCasesHandled());
+                        session.setAttribute("astrologer", allUser);
                         out.print("3");
                         break;
                     case EVENT_PLANNER:
+                        session.setAttribute("eventPlanner", allUser);
                         out.print("4");
                         break;
                     case ADMIN:
+                        session.setAttribute("admin", allUser);
                         out.print("5");
                         break;
                     default:
