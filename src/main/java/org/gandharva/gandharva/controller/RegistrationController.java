@@ -191,8 +191,7 @@ public class RegistrationController extends HttpServlet {
         }
 
         if(success){
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("Astrologer_Login.jsp");
-            requestDispatcher.forward(req,resp);
+            out.print("0");
         }
     }
 }

@@ -67,7 +67,7 @@ $(document).ready(function () {
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#932828'
                 });
-                // Optionally, display more specific error messages
+                window.location.href = "login";
             }
         });
     });

@@ -38,19 +38,19 @@ public class RequestController extends HttpServlet {
         String comments = req.getParameter("comments");
         String feedback = req.getParameter("feedback");
 
-//        HttpSession session = req.getSession();
-//        String idString = (String) session.getAttribute("id");
-//        UUID userId = UUID.fromString(idString);
-//        String userType = (String) session.getAttribute("userType");
-//        UserType userTypeEnum = UserType.valueOf(userType);
-//
-//        if(session.getAttribute("id") == null) {
-//            resp.sendRedirect("Astrologer_Login.jsp");
-//            return;
-//        }
-
-        String idString = "fa993a0b-fe39-4df9-b7f6-183084c5d24c";
+        HttpSession session = req.getSession();
+        String idString = (String) session.getAttribute("id");
         UUID userId = UUID.fromString(idString);
+        String userType = (String) session.getAttribute("userType");
+        UserType userTypeEnum = UserType.valueOf(userType);
+
+        if(session.getAttribute("id") == null) {
+            resp.sendRedirect("Astrologer_Login.jsp");
+            return;
+        }
+
+//        String idString = "fa993a0b-fe39-4df9-b7f6-183084c5d24c";
+//        UUID userId = UUID.fromString(idString);
 
         var request = new Request(startDate,deadline,horoscope,status,comments,feedback,userId);
 
