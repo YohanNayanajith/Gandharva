@@ -20,7 +20,7 @@ public class User extends ParentUser {
 
     public User(ParentUser parentUser, String nic, LocalDate birthday) {
         super(parentUser.getFirstName(), parentUser.getLastName(), parentUser.getUserType(), parentUser.getEmail(),
-                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict());
+                parentUser.getPassword(), parentUser.getCountryOfResidence(), parentUser.getDistrict(), parentUser.getUserImage());
         this.nic = nic;
         this.birthday = birthday;
     }

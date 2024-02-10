@@ -13,6 +13,7 @@ public class ParentUser {
     private String password;
     private String countryOfResidence;
     private String district;
+    private byte[] userImage;
 
     public ParentUser(){}
 
@@ -25,6 +26,18 @@ public class ParentUser {
         this.password = password;
         this.countryOfResidence = countryOfResidence;
         this.district = district;
+    }
+
+    public ParentUser(String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district, byte[] userImage) {
+        this.id = UUID.randomUUID();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userType = userType;
+        this.email = email;
+        this.password = password;
+        this.countryOfResidence = countryOfResidence;
+        this.district = district;
+        this.userImage = userImage;
     }
 
     public ParentUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district) {
@@ -100,5 +113,13 @@ public class ParentUser {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public byte[] getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(byte[] userImage) {
+        this.userImage = userImage;
     }
 }

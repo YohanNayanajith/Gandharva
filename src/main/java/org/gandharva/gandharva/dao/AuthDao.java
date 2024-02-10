@@ -10,7 +10,7 @@ import java.util.UUID;
 public class AuthDao {
     public static boolean astrologerRegistration(Astrologer astrologer) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,certificateFileUpload) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,certificateFileUpload,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, astrologer.getId().toString());
@@ -25,13 +25,14 @@ public class AuthDao {
         pst.setInt(9, astrologer.getNumberOfCasesHandled());
         pst.setInt(10, astrologer.getYearsOfExperience());
         pst.setBytes(11, astrologer.getCertificateFileUpload());
+        pst.setBytes(12, astrologer.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
 
     public static boolean userRegistration(User user) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,nic,birthday) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,nic,birthday,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, user.getId().toString());
@@ -44,13 +45,14 @@ public class AuthDao {
         pst.setString(8, user.getDistrict());
         pst.setString(9, user.getNic());
         pst.setDate(10, Date.valueOf(user.getBirthday()));
+        pst.setBytes(11, user.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
 
     public static boolean eventPlannerRegistration(EventPlanner eventPlanner) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,brFileUpload) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,brFileUpload,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, eventPlanner.getId().toString());
@@ -64,6 +66,7 @@ public class AuthDao {
         pst.setInt(9, eventPlanner.getNumberOfCasesHandled());
         pst.setInt(10, eventPlanner.getYearsOfExperience());
         pst.setBytes(11, eventPlanner.getBrFileUpload());
+        pst.setBytes(12, eventPlanner.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
