@@ -107,7 +107,6 @@
         // Retrieve session attributes
         String firstName = (String) session.getAttribute("firstName");
         String lastName = (String) session.getAttribute("lastName");
-        System.out.println(firstName);
     %>
 
     <div class="card--container">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Binali Ukwatte
@@ -208,15 +209,15 @@
                 <div class="profile--info">
                     <h1> Profile Info </h1>
                     <h2> First Name </h2>
-                    <input type="text" class="input" value="John">
+                    <input type="text" class="input" value='<c:out value="${sessionScope.loggedInUser.firstName}" />'>
                     <h2> Last Name </h2>
-                    <input type="text" class="input" value=" Doe">
+                    <input type="text" class="input" value='<c:out value="${sessionScope.loggedInUser.lastName}" />'>
                     <h2> Years of Experience </h2>
-                    <input type="text" class="input" value="14">
+                    <input type="text" class="input" value='<c:out value="${sessionScope.loggedInUser.yearsOfExperience}" />'>
                     <h2> District </h2>
-                    <input type="text" class="input" value="Colombo">
+                    <input type="text" class="input" value='<c:out value="${sessionScope.loggedInUser.district}" />'>
                     <h2> E-mail </h2>
-                    <input type="text" class="input" value="john@gmail.com">
+                    <input type="text" class="input" value='<c:out value="${sessionScope.loggedInUser.email}" />'>
                 </div>
             </div>
         </div>

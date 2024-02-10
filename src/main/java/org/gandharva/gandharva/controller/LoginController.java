@@ -52,6 +52,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("firstName", loginData.getFirstName());
             session.setAttribute("lastName", loginData.getLastName());
             session.setAttribute("userType", loginData.getUserType());
+            session.setAttribute("loggedInUser", loginData);
 
             System.out.println(loginData.getId().toString());
             UserType userType = loginData.getUserType();

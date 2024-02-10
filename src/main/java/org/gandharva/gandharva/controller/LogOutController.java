@@ -13,6 +13,7 @@ public class LogOutController extends HttpServlet {
         System.out.println("Logout controller called");
         PrintWriter out = resp.getWriter();
         HttpSession session = req.getSession();
+        session.removeAttribute("loggedInUser");
         session.invalidate();
         out.write("1");
     }
