@@ -10,6 +10,7 @@ import org.gandharva.gandharva.model.EventPlanner;
 import org.gandharva.gandharva.model.ParentUser;
 import org.gandharva.gandharva.model.User;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -17,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -109,7 +113,35 @@ public class RegistrationController extends HttpServlet {
 
         UserType userTypeEnum = UserType.valueOf(userType);
 
+//        Part userImageFilePart = req.getPart("userImage");
+//        byte[] userImage = null;
+//        if (userImageFilePart != null) {
+//            System.out.println("Image file is not null!");
+//            InputStream fileContent = userImageFilePart.getInputStream();
+//            userImage = fileContent.readAllBytes();
+//        }
+        byte[] whiteImageBytes = null;
+        try {
+            BufferedImage image = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
+            Graphics2D graphics = image.createGraphics();
+
+            Color greyColor = new Color(128, 128, 128); // RGB values for grey color
+            graphics.setColor(greyColor);
+//            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, image.getWidth(), image.getHeight());
+            graphics.dispose();
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", outputStream);
+            whiteImageBytes = outputStream.toByteArray();
+            outputStream.close();
+            System.out.println("New white image created!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         var parentUser = new ParentUser(firstName,lastName,userTypeEnum,email,password,countryOfResidence,district);
+        parentUser.setUserImage(whiteImageBytes);
 
         boolean success = false;
 
@@ -139,27 +171,6 @@ public class RegistrationController extends HttpServlet {
                     InputStream fileContent = filePart.getInputStream();
                     certificateFileUpload = fileContent.readAllBytes();
                 }
-
-                System.out.println(Arrays.toString(certificateFileUpload));
-                // Handle file upload here
-//                byte[] certificateFileUpload = null;
-//                boolean isMultipart = ServletFileUpload.isMultipartContent(req);
-//                if (isMultipart) {
-//                    DiskFileItemFactory factory = new DiskFileItemFactory();
-//                    ServletFileUpload upload = new ServletFileUpload(factory);
-//
-//                    try {
-//                        List<FileItem> items = upload.parseRequest(req);
-//                        for (FileItem item : items) {
-//                            if (!item.isFormField() && item.getFieldName().equals("certificateFileUpload")) {
-//                                certificateFileUpload = item.get(); // This is your file data
-//                            }
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                System.out.println(Arrays.toString(certificateFileUpload));
 
                 Astrologer astrologer = new Astrologer(parentUser,numberOfCasesHandled,yearsOfExperience,certificateFileUpload);
                 try {

@@ -2,9 +2,10 @@ package org.gandharva.gandharva.model;
 
 import org.gandharva.gandharva.constants.UserType;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
-public class ParentUser {
+public class AllUser {
     private UUID id;
     private String firstName;
     private String lastName;
@@ -13,34 +14,18 @@ public class ParentUser {
     private String password;
     private String countryOfResidence;
     private String district;
+    private String nic;
+    private LocalDate birthday;
+    private int numberOfCasesHandled;
+    private int yearsOfExperience;
+    private byte[] certificateFileUpload;
+    private byte[] brFileUpload;
     private byte[] userImage;
 
-    public ParentUser(){}
-
-    public ParentUser(String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district) {
-        this.id = UUID.randomUUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userType = userType;
-        this.email = email;
-        this.password = password;
-        this.countryOfResidence = countryOfResidence;
-        this.district = district;
+    public AllUser() {
     }
 
-    public ParentUser(String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district, byte[] userImage) {
-        this.id = UUID.randomUUID();
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userType = userType;
-        this.email = email;
-        this.password = password;
-        this.countryOfResidence = countryOfResidence;
-        this.district = district;
-        this.userImage = userImage;
-    }
-
-    public ParentUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district) {
+    public AllUser(UUID id, String firstName, String lastName, UserType userType, String email, String password, String countryOfResidence, String district, String nic, LocalDate birthday, int numberOfCasesHandled, int yearsOfExperience, byte[] certificateFileUpload, byte[] brFileUpload, byte[] userImage) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,6 +34,13 @@ public class ParentUser {
         this.password = password;
         this.countryOfResidence = countryOfResidence;
         this.district = district;
+        this.nic = nic;
+        this.birthday = birthday;
+        this.numberOfCasesHandled = numberOfCasesHandled;
+        this.yearsOfExperience = yearsOfExperience;
+        this.certificateFileUpload = certificateFileUpload;
+        this.brFileUpload = brFileUpload;
+        this.userImage = userImage;
     }
 
     public UUID getId() {
@@ -113,6 +105,54 @@ public class ParentUser {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public int getNumberOfCasesHandled() {
+        return numberOfCasesHandled;
+    }
+
+    public void setNumberOfCasesHandled(int numberOfCasesHandled) {
+        this.numberOfCasesHandled = numberOfCasesHandled;
+    }
+
+    public int getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public void setYearsOfExperience(int yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public byte[] getCertificateFileUpload() {
+        return certificateFileUpload;
+    }
+
+    public void setCertificateFileUpload(byte[] certificateFileUpload) {
+        this.certificateFileUpload = certificateFileUpload;
+    }
+
+    public byte[] getBrFileUpload() {
+        return brFileUpload;
+    }
+
+    public void setBrFileUpload(byte[] brFileUpload) {
+        this.brFileUpload = brFileUpload;
     }
 
     public byte[] getUserImage() {

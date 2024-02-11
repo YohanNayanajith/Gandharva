@@ -10,7 +10,7 @@ import java.util.UUID;
 public class AuthDao {
     public static boolean astrologerRegistration(Astrologer astrologer) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,certificateFileUpload) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,certificateFileUpload,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, astrologer.getId().toString());
@@ -25,13 +25,14 @@ public class AuthDao {
         pst.setInt(9, astrologer.getNumberOfCasesHandled());
         pst.setInt(10, astrologer.getYearsOfExperience());
         pst.setBytes(11, astrologer.getCertificateFileUpload());
+        pst.setBytes(12, astrologer.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
 
     public static boolean userRegistration(User user) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,nic,birthday) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,nic,birthday,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, user.getId().toString());
@@ -44,13 +45,14 @@ public class AuthDao {
         pst.setString(8, user.getDistrict());
         pst.setString(9, user.getNic());
         pst.setDate(10, Date.valueOf(user.getBirthday()));
+        pst.setBytes(11, user.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
 
     public static boolean eventPlannerRegistration(EventPlanner eventPlanner) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,brFileUpload) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user(id,firstName,lastName,email,userType,password,countryOfResidence,district,numberOfCasesHandled,yearsOfExperience,brFileUpload,userImage) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, eventPlanner.getId().toString());
@@ -64,12 +66,13 @@ public class AuthDao {
         pst.setInt(9, eventPlanner.getNumberOfCasesHandled());
         pst.setInt(10, eventPlanner.getYearsOfExperience());
         pst.setBytes(11, eventPlanner.getBrFileUpload());
+        pst.setBytes(12, eventPlanner.getUserImage());
 
         return pst.executeUpdate() > 0;
     }
 
-    public static ParentUser getUser(String id) throws SQLException, ClassNotFoundException {
-        ParentUser parentUser = new ParentUser();
+    public static AllUser getUser(String id) throws SQLException, ClassNotFoundException {
+        AllUser allUser = new AllUser();
         Connection connection = DBConnection.getInstance().getConnection();
         String query = "SELECT * FROM user WHERE id=?";
         PreparedStatement pst = connection.prepareStatement(query);
@@ -78,34 +81,31 @@ public class AuthDao {
         ResultSet resultSet = pst.executeQuery();
 
         if (resultSet.next()) {
-            parentUser.setId(UUID.fromString(resultSet.getString(1)));
-            parentUser.setFirstName(resultSet.getString(2));
-            parentUser.setLastName(resultSet.getString(3));
-            parentUser.setEmail(resultSet.getString(4));
-            parentUser.setUserType(UserType.valueOf(resultSet.getString(5)));
-            parentUser.setPassword(resultSet.getString(6));
-            parentUser.setCountryOfResidence(resultSet.getString(7));
-            parentUser.setDistrict(resultSet.getString(8));
+            allUser.setId(UUID.fromString(resultSet.getString(1)));
+            allUser.setFirstName(resultSet.getString(2));
+            allUser.setLastName(resultSet.getString(3));
+            allUser.setEmail(resultSet.getString(4));
+            allUser.setUserType(UserType.valueOf(resultSet.getString(5)));
+            allUser.setPassword(resultSet.getString(6));
+            allUser.setCountryOfResidence(resultSet.getString(7));
+            allUser.setDistrict(resultSet.getString(8));
+            allUser.setUserImage(resultSet.getBytes(15));
 
-            if(parentUser.getUserType().equals(UserType.USER) || parentUser.getUserType().equals(UserType.PREMIUM_USER) || parentUser.getUserType().equals(UserType.STANDARD_USER)){
-                User user = new User(parentUser);
-                user.setNic(resultSet.getString(9));
-                user.setBirthday(resultSet.getDate(10).toLocalDate());
-                return user;
-            } else if (parentUser.getUserType().equals(UserType.ASTROLOGER)) {
-                Astrologer astrologer = new Astrologer(parentUser);
-                astrologer.setNumberOfCasesHandled(resultSet.getInt(9));
-                astrologer.setYearsOfExperience(resultSet.getInt(10));
-                astrologer.setCertificateFileUpload(resultSet.getBytes(11));
-                return astrologer;
-            } else if (parentUser.getUserType().equals(UserType.EVENT_PLANNER)) {
-                EventPlanner eventPlanner = new EventPlanner(parentUser);
-                eventPlanner.setNumberOfCasesHandled(resultSet.getInt(9));
-                eventPlanner.setYearsOfExperience(resultSet.getInt(10));
-                eventPlanner.setBrFileUpload(resultSet.getBytes(11));
+            if(allUser.getUserType().equals(UserType.USER) || allUser.getUserType().equals(UserType.PREMIUM_USER) || allUser.getUserType().equals(UserType.STANDARD_USER)){
+                allUser.setNic(resultSet.getString(9));
+                allUser.setBirthday(resultSet.getDate(10).toLocalDate());
+            } else if (allUser.getUserType().equals(UserType.ASTROLOGER)) {
+                allUser.setNumberOfCasesHandled(resultSet.getInt(11));
+                allUser.setYearsOfExperience(resultSet.getInt(12));
+                allUser.setCertificateFileUpload(resultSet.getBytes(13));
+            } else if (allUser.getUserType().equals(UserType.EVENT_PLANNER)) {
+                allUser.setNumberOfCasesHandled(resultSet.getInt(11));
+                allUser.setYearsOfExperience(resultSet.getInt(12));
+                allUser.setBrFileUpload(resultSet.getBytes(14));
             }else {
                 throw new RuntimeException("UserType not present in the database");
             }
+            return allUser;
         }
 
         return null;
@@ -132,6 +132,17 @@ public class AuthDao {
         PreparedStatement pst = connection.prepareStatement(query);
 
         pst.setString(1, password);
+        pst.setString(2, id);
+
+        return pst.executeUpdate() > 0;
+    }
+
+    public static boolean updateProfileImage(String id, byte[] userImage) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE user SET userImage=? WHERE id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setBytes(1, userImage);
         pst.setString(2, id);
 
         return pst.executeUpdate() > 0;
