@@ -1,51 +1,84 @@
 $(document).ready(function () {
-            // Status - NEW
+    $.ajax({
+        method: "GET",
+        url: "request/getAll",
+        // dataType: "json",
+        // contentType: "application/json",
+        success: function (result) {
+            $.each(result, function (index, x) {
+                $('#user-request-table').append(
+                    `<tr>
+                        <td>${x.startDate}</td>
+                        <td>${x.firstName} ${x.lastName}</td>
+                        <td>Horoscope1</td>
+                        <td>
+                            ${x.status}
+                            <i class="status-icon fas fa-check-circle" onClick='updateStatus("${x.id}")'></i>
+                        </td>
+                        <td>
+                            ${x.feedback}
+                            <i class="menu-icon fas fa-comment feedback-icon" onClick='provideFeedback("${x.id}")'></i>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Not displayed to anyone else" value="${x.comments}">
+                        </td>
+                    </tr>`
+                );
+            });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+});
+
+//$(document).on('click', '.feedback-icon', function () {
+//    let requestId = $(this).data('id');
+//    console.log('Feedback clicked for ID: ' + requestId);
+//
+//});
+
+function updateStatus(id) {
+    // You can implement the logic to update the status based on the provided ID here
+    console.log('Updating status for ID: ' + id);
+}
+
+function provideFeedback(id) {
+    // You can use the ID here to provide feedback for the specific item
+    console.log('Providing feedback for ID: ' + id);
+    Swal.fire({
+        title: 'Feedback',
+        input: 'textarea',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Please enter your feedback!';
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let feedback = result.value;
+
             $.ajax({
-                method: "GET",
-                url: "request/getAll",
-                // dataType: "json",
-                // contentType: "application/json",
+                method: 'POST',
+                url: 'astrologer/update/pending/feedback',
+                data: {
+                    feedback: feedback,
+                    requestId: id
+                },
                 success: function (result) {
-                    $.map(result, function (x) {
-                        $('#user-request-table').append(
-                            `<tr>
-                                <td>${x.startDate}</td>
-                                <td>${x.firstName} ${x.lastName}</td>
-                                <td>Horoscope1</td>
-                                <td>${x.status}</td>
-                                <td>
-                                    ${x.feedback}
-                                    <i class="menu-icon fas fa-comment feedback-icon"></i>
-                                </td>
-                                <td>
-                                    <input type="text" placeholder="Not displayed to anyone else" value="${x.comments}">
-                                </td>
-                            </tr>`
-                        );
-                    });
+                    if(result == "1"){
+                        Swal.fire('Feedback Submitted!', '', 'success');
+                    }else {
+                        Swal.fire('Feedback is not Submitted!', '', 'error');
+                    }
                 },
                 error: function (error) {
-                    console.log(error);
+                    Swal.fire('Feedback is not Submitted!', '', 'error');
                 }
             });
-        });
-
-        $(document).on('click', '.feedback-icon', function () {
-            Swal.fire({
-                title: 'Feedback',
-                input: 'textarea',
-                showCancelButton: true,
-                confirmButtonText: 'Submit',
-                cancelButtonText: 'Cancel',
-                inputValidator: (value) => {
-                    if (!value) {
-                        return 'Please enter your feedback!';
-                    }
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Process the submitted feedback (you can send it to the server, etc.)
-                    Swal.fire('Feedback Submitted!', '', 'success');
-                }
-            });
-        });
+        }
+    });
+}

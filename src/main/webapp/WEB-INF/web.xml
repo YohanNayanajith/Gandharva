@@ -153,4 +153,31 @@
         <servlet-name>updateProfileImageController</servlet-name>
         <url-pattern>/astrologer/update/image</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateRequestFeedbackController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateRequestFeedback</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateRequestFeedbackController</servlet-name>
+        <url-pattern>/astrologer/update/pending/feedback</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateRequestCommentsController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateRequestComments</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateRequestCommentsController</servlet-name>
+        <url-pattern>/astrologer/update/pending/comments</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateRequestStatusController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.UpdateRequestStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateRequestStatusController</servlet-name>
+        <url-pattern>/astrologer/update/pending/status</url-pattern>
+    </servlet-mapping>
 </web-app>
