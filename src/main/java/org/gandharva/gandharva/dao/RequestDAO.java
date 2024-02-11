@@ -84,19 +84,6 @@ public class RequestDAO {
         return requests;
     }
 
-    public static boolean updateRequestStatus(String requestId, RequestType requestType) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String query = "UPDATE request SET status=? WHERE id=?";
-        PreparedStatement pst = connection.prepareStatement(query);
-
-        pst.setString(1, String.valueOf(requestType));
-        pst.setString(2,requestId);
-
-        System.out.println("Request Status updated");
-
-        return pst.executeUpdate() > 0;
-    }
-
     public static List<Request> getRequestsByStatus(String userId, RequestType requestType) throws SQLException, ClassNotFoundException {
         List<Request> requests = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
@@ -138,5 +125,44 @@ public class RequestDAO {
             requestCount = resultSet.getInt(1);
         }
         return requestCount;
+    }
+
+    public static boolean updateRequestStatus(String requestId, RequestType requestType) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE request SET status=? WHERE id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1, String.valueOf(requestType));
+        pst.setString(2,requestId);
+
+        System.out.println("Request Status updated");
+
+        return pst.executeUpdate() > 0;
+    }
+
+    public static boolean updateRequestComments(String requestId, String comments) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE request SET comments=? WHERE id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1, comments);
+        pst.setString(2,requestId);
+
+        System.out.println("Request Comment updated");
+
+        return pst.executeUpdate() > 0;
+    }
+
+    public static boolean updateRequestFeedback(String requestId, String feedback) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String query = "UPDATE request SET feedback=? WHERE id=?";
+        PreparedStatement pst = connection.prepareStatement(query);
+
+        pst.setString(1, feedback);
+        pst.setString(2,requestId);
+
+        System.out.println("Request feedback updated");
+
+        return pst.executeUpdate() > 0;
     }
 }
