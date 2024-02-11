@@ -61,10 +61,9 @@ $(document).ready(function () {
 
         certificateFileUpload = formData.get("certificateFileUpload");
 
-        // Send AJAX request with FormData
         $.ajax({
             method: 'POST',
-            url: 'registration', // Replace with correct URL
+            url: 'registration',
             data: formData,
             processData: false,
             contentType: false,
@@ -77,7 +76,7 @@ $(document).ready(function () {
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#0E2C4B'
                 });
-                // Optionally, clear the form or redirect to a different page
+                window.location.href = "login";
             },
             error: function (error) {
                 // Handle registration errors
@@ -88,12 +87,9 @@ $(document).ready(function () {
                     confirmButtonText: 'Ok',
                     confirmButtonColor: '#932828'
                 });
-                window.location.href = "login";
             }
         });
     });
-
-    // Optional: Display file information when a file is selected
     $('#certificates').change(function () {
         const files = $(this).prop('files');
         for (const file of files) {

@@ -1,6 +1,7 @@
 package org.gandharva.gandharva.controller;
 
 import org.gandharva.gandharva.dao.AuthDao;
+import org.gandharva.gandharva.model.AllUser;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,11 @@ public class UpdateAstrologerPasswordController extends HttpServlet {
         resp.setContentType("text/plain");
 
         String password = req.getParameter("password");
+        String newPassword = req.getParameter("newPassword");
 
         try {
             password = toHexStr(obtainSHA(password));
+            newPassword = toHexStr(obtainSHA(newPassword));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
@@ -39,7 +42,15 @@ public class UpdateAstrologerPasswordController extends HttpServlet {
 
         boolean success = false;
         try {
-            success = AuthDao.updateAstrologerPassword(id, password);
+            AllUser allUser = AuthDao.getUser(id);
+
+            assert allUser != null;
+            if(allUser.getPassword().equals(password)){
+                success = AuthDao.updateAstrologerPassword(id, newPassword);
+            }else {
+                out.print("2");
+            }
+
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
