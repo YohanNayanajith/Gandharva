@@ -180,4 +180,13 @@
         <servlet-name>updateRequestStatusController</servlet-name>
         <url-pattern>/astrologer/update/pending/status</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>astrologerPaymentController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.AstrologerPaymentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>astrologerPaymentController</servlet-name>
+        <url-pattern>/astrologer/payment</url-pattern>
+    </servlet-mapping>
 </web-app>
