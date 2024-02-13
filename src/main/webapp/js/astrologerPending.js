@@ -74,47 +74,7 @@ function updateStatus(id, status) {
     const PENDING = "PENDING";
     const DONE = "DONE";
 
-    if(status == NEW){
-        Swal.fire({
-          title: "Are you accepting this user request?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Accept",
-          cancelButtonText: "Decline",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //ACCEPT
-            //PAYMENT_PENDING
-            Swal.fire("Saved!", "", "success");
-          } else {
-            //DECLINE
-            Swal.fire("Changes are not saved", "", "info");
-          }
-        });
-    } else if(status == DECLINE) {
-        Swal.fire("You Decline the Request!", "", "Error");
-    } else if(status == DONE) {
-        Swal.fire("Already Completed!", "", "success");
-    } else if(status == PAYMENT_PENDING) {
-        // PENDING
-    } else if(status == PENDING) {
-        // DONE
-    }
-
-    Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-
-        Swal.fire("Saved!", "", "success");
-      } else {
-        Swal.fire("Changes are not saved", "", "info");
-      }
-    });
+    Swal.fire("This task was already completed!", "", "info");
 }
 
 function provideFeedback(id) {
