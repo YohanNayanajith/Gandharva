@@ -189,4 +189,13 @@
         <servlet-name>astrologerPaymentController</servlet-name>
         <url-pattern>/astrologer/payment</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>paymentController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.PaymentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>paymentController</servlet-name>
+        <url-pattern>/astrologer/request/payment/*</url-pattern>
+    </servlet-mapping>
 </web-app>

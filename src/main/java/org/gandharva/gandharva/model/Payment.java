@@ -1,13 +1,13 @@
 package org.gandharva.gandharva.model;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.UUID;
 
 public class Payment {
     private UUID id;
-    private LocalDate paymentDate;
+    private Date paymentDate;
     private String paymentMethod;
-    private LocalDate previousExpireDate;
+    private Date previousExpireDate;
     private String currency;
     private double paymentAmount;
     private String authorizationToken;
@@ -16,13 +16,13 @@ public class Payment {
     private String cusLastName;
     private String cusAddress;
     private String cusCity;
-    private LocalDate newExpireDate;
-//    private String userId;
-    private String requestId;
+    private Date newExpireDate;
+    private UUID userId;
+    private UUID requestId;
 
     public Payment() {}
 
-    public Payment(LocalDate paymentDate, String paymentMethod, LocalDate previousExpireDate, String currency, double paymentAmount, String authorizationToken, String paymentStatus, String cusFirstName, String cusLastName, String cusAddress, String cusCity, LocalDate newExpireDate, String requestId) {
+    public Payment(Date paymentDate, String paymentMethod, Date previousExpireDate, String currency, double paymentAmount, String authorizationToken, String paymentStatus, String cusFirstName, String cusLastName, String cusAddress, String cusCity, Date newExpireDate, UUID requestId, UUID userId) {
         this.id = UUID.randomUUID();
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
@@ -37,6 +37,25 @@ public class Payment {
         this.cusCity = cusCity;
         this.newExpireDate = newExpireDate;
         this.requestId = requestId;
+        this.userId = userId;
+    }
+
+    public Payment(UUID id, Date paymentDate, String paymentMethod, Date previousExpireDate, String currency, double paymentAmount, String authorizationToken, String paymentStatus, String cusFirstName, String cusLastName, String cusAddress, String cusCity, Date newExpireDate, UUID userId, UUID requestId) {
+        this.id = id;
+        this.paymentDate = paymentDate;
+        this.paymentMethod = paymentMethod;
+        this.previousExpireDate = previousExpireDate;
+        this.currency = currency;
+        this.paymentAmount = paymentAmount;
+        this.authorizationToken = authorizationToken;
+        this.paymentStatus = paymentStatus;
+        this.cusFirstName = cusFirstName;
+        this.cusLastName = cusLastName;
+        this.cusAddress = cusAddress;
+        this.cusCity = cusCity;
+        this.newExpireDate = newExpireDate;
+        this.userId = userId;
+        this.requestId = requestId;
     }
 
     public UUID getId() {
@@ -47,11 +66,11 @@ public class Payment {
         this.id = id;
     }
 
-    public LocalDate getPaymentDate() {
+    public Date getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(LocalDate paymentDate) {
+    public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -63,11 +82,11 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public LocalDate getPreviousExpireDate() {
+    public Date getPreviousExpireDate() {
         return previousExpireDate;
     }
 
-    public void setPreviousExpireDate(LocalDate previousExpireDate) {
+    public void setPreviousExpireDate(Date previousExpireDate) {
         this.previousExpireDate = previousExpireDate;
     }
 
@@ -135,19 +154,27 @@ public class Payment {
         this.cusCity = cusCity;
     }
 
-    public LocalDate getNewExpireDate() {
+    public Date getNewExpireDate() {
         return newExpireDate;
     }
 
-    public void setNewExpireDate(LocalDate newExpireDate) {
+    public void setNewExpireDate(Date newExpireDate) {
         this.newExpireDate = newExpireDate;
     }
 
-    public String getRequestId() {
+    public UUID getRequestId() {
         return requestId;
     }
 
-    public void setRequestId(String requestId) {
+    public void setRequestId(UUID requestId) {
         this.requestId = requestId;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 }
