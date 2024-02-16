@@ -1,15 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
   User: Binali Ukwatte
-  Date: 01-11-2023
-  Time: 20:36
-  To change this template use File | Settings | File Templates.
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Binali Ukwatte
   Date: 01-02-2024
   Time: 21:39
   To change this template use File | Settings | File Templates.
@@ -45,7 +36,7 @@
     <li>
       <a href="Astrologer_pending.jsp">
         <i class="menu-icon fas fa-hourglass-half"></i>
-        <span>Pending</span>
+        <span>User Requests</span>
       </a>
     </li>
     <li>

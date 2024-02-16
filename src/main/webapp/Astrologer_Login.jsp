@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Astrologer Login</title>
+    <title>Login</title>
     <style>
         body {
             background-image: url('images/background.jpg');
@@ -46,13 +46,12 @@
 
 
         header {
-            background-color: rgba(0, 0, 0, 0.8);
+            /*background-color: rgba(0, 0, 0, 0.8);*/
             padding: 20px 0;
         }
 
         nav {
-
-            color: black;
+            /*color: black;*/
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -113,10 +112,12 @@
             border: none;
             cursor: pointer;
             margin-left: 10px;
+
         }
 
         .buttons button:hover {
-            text-decoration: underline; /* Underline button text on hover */
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-3px);
         }
 
         main {
@@ -137,7 +138,7 @@
 
         .form-box {
             background-color: rgba(255, 255, 255, 0.5);
-            padding: 50px;
+            padding: 50px 100px 50px 100px    ;
             border: 1px solid #000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 80%;
@@ -173,28 +174,30 @@
             border-radius: 50px;
             border: none;
             cursor: pointer;
-
+            transition: all 0.3s ease-in-out;
         }
 
         .proceed:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            text-decoration: underline;
+            background-color: rgba(0, 0, 0, 0.2);
+            transform: translateY(3px);
         }
 
         a {
             color: black;
             text-decoration: none;
+            transition: all 0.3s ease-in-out;
         }
 
         a:hover {
-            text-decoration: underline;
+            transform: translateY(-3px);
         }
 
         .input-field {
             border-color: black;
             border-radius: 5px;
-            padding: 5px;
+            padding: 10px;
             align: left;
+
         }
 
         label {
@@ -232,17 +235,17 @@
         <div class="logo">
             <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo"></a>
         </div>
-        <ul class="navbar">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Services</a>
-                <ul class="submenu">
-                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>
-                    <li><a href="#">Event Planner</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
+<%--        <ul class="navbar">--%>
+<%--            <li><a href="#">About Us</a></li>--%>
+<%--            <li><a href="#">Our Services</a>--%>
+<%--                <ul class="submenu">--%>
+<%--                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>--%>
+<%--                    <li><a href="#">Event Planner</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
+<%--            <li><a href="#">Pricing</a></li>--%>
+<%--            <li><a href="#">Help</a></li>--%>
+<%--        </ul>--%>
 
         <div class="buttons">
             <a href="Astrologer_Login.jsp">
@@ -259,7 +262,7 @@
 
 <div class="container">
     <div class="form-box">
-        <h1 class="heading">Astrologer Login</h1>
+        <h1 class="heading">Login</h1>
         <br>
         <br>
         <form action="astrologerLogin" method="POST" id="login-form">
