@@ -48,12 +48,12 @@
 
 
         header {
-            background-color: rgba(0, 0, 0, 0.8);
+            /*background-color: rgba(0, 0, 0, 0.8);*/
             padding: 20px 0;
         }
 
         nav {
-            color: black;
+            /*color: black;*/
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -199,17 +199,17 @@
         <div class="logo">
             <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo" ></a>
         </div>
-        <ul class="navbar">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Services</a>
-                <ul class="submenu">
-                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>
-                    <li><a href="#">Event Planner</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
+<%--        <ul class="navbar">--%>
+<%--            <li><a href="#">About Us</a></li>--%>
+<%--            <li><a href="#">Our Services</a>--%>
+<%--                <ul class="submenu">--%>
+<%--                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>--%>
+<%--                    <li><a href="#">Event Planner</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
+<%--            <li><a href="#">Pricing</a></li>--%>
+<%--            <li><a href="#">Help</a></li>--%>
+<%--        </ul>--%>
         <div class="buttons">
             <a href="Astrologer_Login.jsp"> <button class="signin">Sign In </button></a>
             <a href="Astrologer_Registration.jsp"><button class="signup"> |  Sign Up </button> </a>

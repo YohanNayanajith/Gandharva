@@ -39,7 +39,7 @@
         <li>
             <a href="Astrologer_pending.jsp">
                 <i class="menu-icon fas fa-hourglass-half"></i>
-                <span>Pending</span>
+                <span>User Requests</span>
             </a>
         </li>
         <li>
@@ -135,8 +135,21 @@
             document.getElementById("currentDate").innerHTML = formattedDate;
         </script>
         <div class="card--wrapper">
-            <div class="request--card light-red">
+            <div class="request--card light-red" id="pending">
 <%--                redirect to pending--%>
+                <script>
+                    // Get the button element by its id
+                    var button = document.getElementById("pending");
+
+
+                    // Attach a click event listener to the button
+                    button.addEventListener("click", function() {
+                        // Redirect
+                        window.location.href = "Astrologer_pending.jsp";
+                    });
+
+
+                </script>
                 <div class="card--header" id="card-header-value-status-new">
 
                 </div>

@@ -5,13 +5,12 @@
   Time: 12.00
   To change this template use File | Settings | File Templates.
 --%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Astrologer Registration check</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             background-image: url('images/background.jpg');
@@ -49,13 +48,13 @@
 
 
             header {
-                background-color: rgba(0, 0, 0, 0.8);
+                /*background-color: rgba(0, 0, 0, 0.8);*/
                 padding: 20px 0;
             }
 
             nav {
 
-                color: black;
+                /*color: black;*/
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -72,6 +71,7 @@
                 border: none;
             }
 
+
             .navbar {
 
                 list-style-type: none;
@@ -85,14 +85,15 @@
             }
 
             .navbar a {
-                text-decoration: none;
                 color: white;
                 font-size: 20px;
+                transition: all 0.3s ease-in-out;
             }
 
-            .navbar a:hover {
-                text-decoration: underline;
-            }
+        .navbar :hover {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(3px);
+        }
 
         .submenu {
             list-style-type: none;
@@ -119,9 +120,10 @@
                 margin-left: 10px;
             }
 
-            .buttons button:hover {
-                text-decoration: underline; /* Underline button text on hover */
-            }
+        .buttons button:hover {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-3px);
+        }
 
             main {
                 display: flex;
@@ -170,6 +172,8 @@
             text-decoration: underline;
         }
         .proceed {
+
+            align-items: center;
             font-size: large;
             background-color: rgba(255, 255, 255, 0.4);
             color: black;
@@ -181,8 +185,9 @@
         }
 
         .proceed:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            text-decoration: underline;
+            background-color: rgba(255, 255, 255, 0.01);
+            transform: translateY(3px);
+            transition: all 0.3s ease-in-out;
         }
         a {
             color: black;
@@ -190,7 +195,8 @@
             }
 
         a:hover {
-            text-decoration: underline;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-3px);
         }
 
         .input-field{
@@ -211,17 +217,17 @@
         <div class="logo">
             <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo" ></a>
         </div>
-        <ul class="navbar">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Services</a>
-                <ul class="submenu">
-                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>
-                    <li><a href="#">Event Planner</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Help</a></li>
-        </ul>
+<%--        <ul class="navbar">--%>
+<%--            <li><a href="#">About Us</a></li>--%>
+<%--            <li><a href="#">Our Services</a>--%>
+<%--                <ul class="submenu">--%>
+<%--                    <li><a href="Astrologer_Registration.jsp">Astrologer</a></li>--%>
+<%--                    <li><a href="#">Event Planner</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
+<%--            <li><a href="#">Pricing</a></li>--%>
+<%--            <li><a href="#">Help</a></li>--%>
+<%--        </ul>--%>
 
         <div class="buttons">
             <a href="Astrologer_Login.jsp"> <button class="signin">Sign In </button></a>
@@ -326,7 +332,12 @@
         submitBtn.addEventListener("click", function(event) {
             if (password.value !== confirmPassword.value) {
                 event.preventDefault(); // Prevent form submission if passwords don't match
-                alert("Passwords do not match");
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Passwords do not match!",
+                    // footer: '<a href="#">Why do I have this issue?</a>'
+                });
             }
         });
     });

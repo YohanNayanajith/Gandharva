@@ -39,7 +39,7 @@
         <li>
             <a href="#">
                 <i class="menu-icon fas fa-hourglass-half"></i>
-                <span>Pending</span>
+                <span>User Requests</span>
             </a>
         </li>
         <li>

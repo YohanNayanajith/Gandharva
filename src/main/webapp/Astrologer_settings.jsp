@@ -40,7 +40,7 @@
         <li>
             <a href="Astrologer_pending.jsp">
                 <i class="menu-icon fas fa-hourglass-half"></i>
-                <span>Pending</span>
+                <span>User Requests</span>
             </a>
         </li>
         <li>
