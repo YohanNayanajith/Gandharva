@@ -65,7 +65,7 @@ $(document).ready(function (){
                         confirmButtonColor: '#0E2C4B',
                     })
                     setTimeout(function() {
-                        window.location.href = 'http://localhost:8080/gandharva_war_exploded/user';
+                        window.location.href = 'user';
                     }, 1000);
 
                 }else if(result == "2"){
@@ -78,7 +78,7 @@ $(document).ready(function (){
                         confirmButtonColor: '#0E2C4B',
                     })
                     setTimeout(function() {
-                        window.location.href = 'http://localhost:8080/gandharva_war_exploded/user';
+                        window.location.href = 'user';
                     }, 1000);
                 }else if(result == "3"){
                     //instructor
@@ -90,7 +90,7 @@ $(document).ready(function (){
                         confirmButtonColor: '#0E2C4B',
                     })
                     setTimeout(function() {
-                        window.location.href = 'http://localhost:8080/gandharva_war_exploded/astrologer';
+                        window.location.href = 'astrologer';
                     }, 1000);
                 }else if(result == "4"){
                     //manager
@@ -102,7 +102,7 @@ $(document).ready(function (){
                         confirmButtonColor: '#0E2C4B',
                     })
                     setTimeout(function() {
-                        window.location.href = 'http://localhost:8080/gandharva_war_exploded/eventPlanner';
+                        window.location.href = 'eventPlanner';
                     }, 1000);
                 }else if(result == "5"){
                     Swal.fire({
@@ -113,7 +113,7 @@ $(document).ready(function (){
                         confirmButtonColor: '#0E2C4B',
                     })
                     setTimeout(function() {
-                        window.location.href = 'http://localhost:8080/gandharva_war_exploded/admin';
+                        window.location.href = 'admin';
                     }, 1000);
                 }else if(result == '6'){
                     Swal.fire({
