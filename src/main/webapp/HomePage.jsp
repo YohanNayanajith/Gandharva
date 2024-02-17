@@ -84,8 +84,9 @@
             font-size: 20px;
         }
 
-        .navbar a:hover {
-            text-decoration: underline;
+        .navbar :hover {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-3px);
         }
 
         .submenu {
@@ -96,6 +97,7 @@
             background-color: rgba(0, 0, 0, 0.25);
             padding: 10px;
             margin-left: 5px;
+            margin-right: 5px;
             border-radius: 30px;
             border: none;
         }
@@ -106,7 +108,6 @@
             display: block;
         }
         .buttons {
-
             display: flex;
             gap: 30px;
         }
@@ -124,7 +125,8 @@
         }
 
         .buttons button:hover {
-            text-decoration: underline;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-3px);
         }
 
 
@@ -151,7 +153,8 @@
 
         .find-match:hover {
             background-color: rgba(255, 255, 255, 0.2); /* Lighten on hover */
-            text-decoration: underline;
+            transition: all 0.3s ease-in-out;
+            transform: translateY(3px);
         }
         a{
             color: black;

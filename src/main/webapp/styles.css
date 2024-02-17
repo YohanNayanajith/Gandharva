@@ -60,11 +60,15 @@ body{
 
 }
 
-.menu li:hover, .active{
+.menu li:hover{
     background: lightblue;
     color: black;
 }
 
+.menu .active{
+    color: #070707;
+
+}
 .menu a{
     color: white;
     text-decoration: none;
@@ -74,7 +78,7 @@ body{
     gap: 1.5rem;
 }
 
-.menu a:hover, .active{
+.menu a:hover{
     color: black;
 }
 
@@ -546,3 +550,4 @@ a{
     margin-top: -50px;
     scale: 80%;
 }
+

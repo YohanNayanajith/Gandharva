@@ -15,40 +15,40 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="styles.css">
     <title>Schedule</title>
-    <style>
-        .calendar {
-            width: 300px;
-            margin: 20px auto;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-        }
+<%--    <style>--%>
+<%--        .calendar {--%>
+<%--            width: 300px;--%>
+<%--            margin: 20px auto;--%>
+<%--            border: 1px solid #ccc;--%>
+<%--            border-radius: 5px;--%>
+<%--            padding: 10px;--%>
+<%--            font-family: Arial, sans-serif;--%>
+<%--        }--%>
 
-        .header {
-            text-align: center;
-            margin-bottom: 10px;
-        }
+<%--        .header {--%>
+<%--            text-align: center;--%>
+<%--            margin-bottom: 10px;--%>
+<%--        }--%>
 
-        .body {
-            padding: 10px;
-        }
+<%--        .body {--%>
+<%--            padding: 10px;--%>
+<%--        }--%>
 
-        .event {
-            background-color: #f0f0f0;
-            padding: 5px;
-            margin-bottom: 5px;
-            border-radius: 3px;
-        }
+<%--        .event {--%>
+<%--            background-color: #f0f0f0;--%>
+<%--            padding: 5px;--%>
+<%--            margin-bottom: 5px;--%>
+<%--            border-radius: 3px;--%>
+<%--        }--%>
 
-        .delete-btn {
-            float: right;
-            cursor: pointer;
-            color: red;
-            margin-left: 5px;
-        }
+<%--        .delete-btn {--%>
+<%--            float: right;--%>
+<%--            cursor: pointer;--%>
+<%--            color: red;--%>
+<%--            margin-left: 5px;--%>
+<%--        }--%>
 
-    </style>
+<%--    </style>--%>
 
 </head>
 <body>
@@ -75,7 +75,7 @@
         <li>
             <a href="Astrologer_pending.jsp">
                 <i class="menu-icon fas fa-hourglass-half"></i>
-                <span>Pending</span>
+                <span>User Requests</span>
             </a>
         </li>
         <li>
@@ -130,8 +130,8 @@
     %>
     <div class="header--wrapper">
         <div class="header--title">
-            <span> Pending</span>
-            <h2>Requests</h2>
+            <span> </span>
+            <h2>Schedule</h2>
 
         </div>
         <div class="user--info">
