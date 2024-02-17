@@ -24,7 +24,7 @@
     </a>
     <ul class="menu">
         <li>
-            <a href="Astrologer_dashboard.jsp">
+            <a href="astrologer">
                 <i class="menu-icon fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -141,5 +141,6 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js" defer></script>
 <script src="js/astrologerPending.js" defer></script>
 </html>

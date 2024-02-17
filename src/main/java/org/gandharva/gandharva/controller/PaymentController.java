@@ -59,6 +59,14 @@ public class PaymentController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
 
+        String pathInfo = req.getPathInfo();
+        String requestTypeString = null;
+
+        String[] pathParts = pathInfo.split("/");
+        if (pathParts.length > 1) {
+            requestTypeString = pathParts[1];
+        }
+
         Date paymentDate = Date.valueOf(req.getParameter("paymentDate"));
         String paymentMethod = req.getParameter("paymentMethod");
         Date previousExpireDate = Date.valueOf(req.getParameter("previousExpireDate"));
@@ -77,12 +85,15 @@ public class PaymentController extends HttpServlet {
         String userType = (String) session.getAttribute("userType");
         UserType userTypeEnum = UserType.valueOf(userType);
 
+        assert requestTypeString != null;
+        UUID requestId = UUID.fromString(requestTypeString);
+
         if(session.getAttribute("id") == null) {
             resp.sendRedirect("Astrologer_Login.jsp");
             return;
         }
 
-        var payment = new Payment(paymentDate, paymentMethod, previousExpireDate, currency, paymentAmount, "", paymentStatus, cusFirstName, cusLastName, cusAddress, cusCity, newExpireDate, userId, userId);
+        var payment = new Payment(paymentDate, paymentMethod, previousExpireDate, currency, paymentAmount, "", paymentStatus, cusFirstName, cusLastName, cusAddress, cusCity, newExpireDate, requestId, userId);
 
         boolean success = false;
         try {

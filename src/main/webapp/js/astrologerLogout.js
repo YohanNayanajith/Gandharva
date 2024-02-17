@@ -23,7 +23,7 @@ $(document).ready(function () {
                 });
 
         }else{
-          window.location.href = "Astrologer_dashboard.jsp";
+          window.location.href = "astrologer";
         }
       });
 });
