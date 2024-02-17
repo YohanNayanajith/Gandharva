@@ -150,13 +150,6 @@ function updateComment(inputField, id) {
     });
 }
 
-function makePayment(id) {
-    console.log('Making payment for ID: ' + id);
-    window.location.href = "astrologer/payment";
-    // after payment completed, Then we have to change tha status
-    // PENDING
-}
-
 function acceptRequest(id) {
     console.log('Accepting request for ID: ' + id);
     Swal.fire({
@@ -229,3 +222,174 @@ function declineRequest(id) {
               }
             });
 }
+
+function makePayment(id) {
+    console.log('Making payment for ID: ' + id);
+    window.location.href = "astrologerPayment";
+//    window.location.href = "astrologer";
+    // after payment completed, Then we have to change tha status
+    // PENDING
+
+// Payment completed. It can be a successful failure.
+
+    // Show the payhere.js popup, when "PayHere Pay" is clicked
+//    document.getElementById('payhere-payment').onclick = function (e) {
+//        payhere.startPayment(payment);
+//    };
+}
+
+//function testPayherePayment {
+//    payhere.onCompleted = function onCompleted(orderId) {
+//        console.log("Payment completed. OrderID:" + orderId);
+//        // Note: validate the payment and show success or failure page to the customer
+//    };
+//
+//    // Payment window closed
+//    payhere.onDismissed = function onDismissed() {
+//        // Note: Prompt user to pay again or show an error page
+//        console.log("Payment dismissed");
+//    };
+//
+//    // Error occurred
+//    payhere.onError = function onError(error) {
+//        // Note: show an error page
+//        console.log("Error:"  + error);
+//    };
+//
+//    // Put the payment variables here
+//    var payment = {
+//        "sandbox": true,
+//        "merchant_id": "1225999",    // Replace your Merchant ID
+//        "return_url": "astrologerPayment",     // Important
+//        "cancel_url": "astrologerPayment",     // Important
+//        "notify_url": "http://sample.com/notify",
+//        "order_id": "ItemNo12345",
+//        "items": "Door bell wireles",
+//        "amount": "1000.00",
+//        "currency": "LKR",
+//        "hash": "",
+//        "first_name": "Saman",
+//        "last_name": "Perera",
+//        "email": "samanp@gmail.com",
+//        "phone": "0771234567",
+//        "address": "No.1, Galle Road",
+//        "city": "Colombo",
+//        "country": "Sri Lanka",
+//        "delivery_address": "No. 46, Galle road, Kalutara South",
+//        "delivery_city": "Kalutara",
+//        "delivery_country": "Sri Lanka",
+//        "custom_1": "",
+//        "custom_2": ""
+//    };
+//
+//    $.ajax({
+//        method: 'POST',
+//        url: 'astrologer/request/payment/hashValue',
+//        data: {
+//            order_id: payment["order_id"],
+//            amount: payment["amount"],
+//            currency: payment["currency"]
+//        },
+//        success: function (result) {
+//            payment.hash = result;
+//
+//            console.log(payment);
+//            payhere.startPayment(payment);
+//        },
+//        error: function (error) {
+//            Swal.fire('Not Saved!', '', 'error');
+//        }
+//    });
+//}
+
+//function afterOnlinePayment(data,status,payment_method){
+//    //alert("submit");
+//    const date = new Date();
+//    let fullDate = date.getFullYear()+"-"+(date.getMonth() + 1).toString().padStart(2, "0")+"-"+date.getDate().toString().padStart(2, "0");
+//    data["current_date"] = fullDate;
+//    // console.log(data);
+//    let new_expire_date1 = parseInt(date.getFullYear())+1;
+//    let new_expire_date = new_expire_date1 + "-" +(date.getMonth() + 1).toString().padStart(2, "0")+"-"+date.getDate().toString().padStart(2, "0");
+//    data["new_expire_date"] = new_expire_date;
+//
+//    //console.log(data);
+//    let payment_id = paymentId;
+//    let payment_date = data.current_date;
+//    // let payment_method = data.
+//    let newExpireDate = data.expiry_day.split("-");
+//    //console.log(newExpireDate);
+//    let previous_expire_date = newExpireDate[0]+"-"+("0"+newExpireDate[1]).slice(-2)+"-"+("0"+newExpireDate[2]).slice(-2);
+//    console.log(previous_expire_date);
+//    // let previous_expire_date = data.expiry_day;
+//    //previous_expire_date = x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2);
+//    let currency = data.currency;
+//    let payment_amount = data.amount;
+//    // let authorization_token
+//    let payment_status = status; //newly added. Meken thama apita kiyanna puluwan cash payment ekakda online da kiyala
+//    let cus_first_name = data.first_name;
+//    let cus_last_name = data.last_name;
+//    let cus_address = data.address;
+//    let cus_city = data.city;
+//    //let cus_city = "None";
+//    // let new_expire_date = new_expire_date2;
+//
+//    $.ajax({
+//        method:"POST",
+//        url:"astrologer/request/payment/{id}",
+//        data: {payment_id:payment_id, payment_date:payment_date, previous_expire_date:previous_expire_date, currency:currency, payment_amount:payment_amount,payment_status:payment_status, cus_first_name:cus_first_name, cus_last_name:cus_last_name, cus_address:cus_address, cus_city:cus_city, new_expire_date:new_expire_date,payment_method:payment_method},
+//        // dataType:"json",
+//        // contentType:"application/json",
+//        success: function (result){
+//            if(result.trim() == "1"){
+//                //alert(result);
+//
+//                if(checkStatus == 0){
+//                    Swal.fire({
+//                        icon: 'success',
+//                        title: 'Request Send to Manager!',
+//                        // text: 'Physical Member!',
+//                        confirmButtonText:"Ok",
+//                        confirmButtonColor: '#0E2C4B',
+//                    })
+//                }else {
+//                    Swal.fire({
+//                        icon: 'success',
+//                        //title: 'Paid Successfully',
+//                        title: 'Payment Proceed',
+//                        // text: 'Physical Member!',
+//                        confirmButtonText:"Ok",
+//                        confirmButtonColor: '#0E2C4B',
+//                    })
+//                }
+//            }else if(result.trim() == "0"){
+//                Swal.fire({
+//                    icon: 'error',
+//                    title: 'Paid Unsuccessfully!',
+//                    text: 'Payment cannot completed!',
+//                    confirmButtonText:"Ok",
+//                    confirmButtonColor: '#932828',
+//                })
+//            }else {
+//                // alert(result);
+//                Swal.fire({
+//                    icon: 'error',
+//                    title: 'Paid Unsuccessfully!',
+//                    text: 'Payment cannot completed!',
+//                    confirmButtonText:"Ok",
+//                    confirmButtonColor: '#932828',
+//                })
+//            }
+//
+//        },
+//        error: function(error){
+//            console.log(error);
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Payment Unsuccessfully!',
+//                text: 'Cannot resolve, System issue!!',
+//                confirmButtonText:"Ok",
+//                confirmButtonColor: '#932828',
+//            })
+//        }
+//    });
+//}

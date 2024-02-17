@@ -24,7 +24,7 @@
     </a>
     <ul class="menu">
         <li class="active">
-            <a href="Astrologer_dashboard.jsp" >
+            <a href="astrologer" >
                 <i class="menu-icon fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>

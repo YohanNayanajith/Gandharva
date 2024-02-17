@@ -266,7 +266,7 @@
     </div>
 
     <div class="form-box">
-        <a href="Astrologer_dashboard.jsp"> <h1 class="heading">Event Planner</h1> </a>
+        <a href="astrologer"> <h1 class="heading">Event Planner</h1> </a>
     </div>
 </div>
 

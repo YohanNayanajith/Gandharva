@@ -182,12 +182,21 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>astrologerProfileController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.AstrologerProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>astrologerProfileController</servlet-name>
+        <url-pattern>/astrologer/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>astrologerPaymentController</servlet-name>
         <servlet-class>org.gandharva.gandharva.controller.AstrologerPaymentController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>astrologerPaymentController</servlet-name>
-        <url-pattern>/astrologer/payment</url-pattern>
+        <url-pattern>/astrologerPayment</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -197,5 +206,14 @@
     <servlet-mapping>
         <servlet-name>paymentController</servlet-name>
         <url-pattern>/astrologer/request/payment/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>paymentHashvalueGeneratorController</servlet-name>
+        <servlet-class>org.gandharva.gandharva.controller.PaymentHashvalueGeneratorController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>paymentHashvalueGeneratorController</servlet-name>
+        <url-pattern>/astrologer/request/payment/hashValue</url-pattern>
     </servlet-mapping>
 </web-app>
