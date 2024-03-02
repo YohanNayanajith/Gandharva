@@ -16,12 +16,13 @@
             padding: 20px;
         }
         .container {
+            color: white;
             max-width: 600px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(36, 51, 62, 0.91);
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
         .form-group {
             margin-bottom: 20px;
@@ -32,7 +33,7 @@
             font-weight: bold;
         }
         input[type="text"] {
-            width: 100%;
+            width: 90%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
