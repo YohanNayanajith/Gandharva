@@ -55,9 +55,9 @@ public class RequestDAO {
     public static List<Request> getRequests(String userId) throws SQLException, ClassNotFoundException {
         List<Request> requests = new ArrayList<>();
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT R.id, R.startDate, R.deadline, R.horoscope, R.status, R.comments, R.feedback, R.userId, U.firstName, U.lastName, U.email, U.userType FROM request R\n" +
+        String query = "SELECT R.id, R.startDate, R.deadline, R.horoscope, R.status, R.comments, R.feedback, R.userId, R.astrologerId, U.firstName, U.lastName, U.email, U.userType FROM request R\n" +
                 "INNER JOIN user U ON U.id = R.userId \n" +
-                "WHERE userId=? ORDER BY deadline DESC;";
+                "WHERE R.astrologerId=? ORDER BY deadline DESC;";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,userId);
 
@@ -74,10 +74,11 @@ public class RequestDAO {
                         resultSet.getString(6),
                         resultSet.getString(7),
                         UUID.fromString(resultSet.getString(8)),
-                        resultSet.getString(9),
+                        UUID.fromString(resultSet.getString(9)),
                         resultSet.getString(10),
                         resultSet.getString(11),
-                        resultSet.getString(12)
+                        resultSet.getString(12),
+                        resultSet.getString(13)
                 ));
             }
         }
@@ -104,7 +105,8 @@ public class RequestDAO {
                         RequestType.valueOf(resultSet.getString(5)),
                         resultSet.getString(6),
                         resultSet.getString(7),
-                        UUID.fromString(resultSet.getString(8))
+                        UUID.fromString(resultSet.getString(8)),
+                        UUID.fromString(resultSet.getString(9))
                 ));
             }
         }
@@ -114,7 +116,7 @@ public class RequestDAO {
     public static int getRequestsCount(String userId, RequestType requestType) throws SQLException, ClassNotFoundException {
         int requestCount = 0;
         Connection connection = DBConnection.getInstance().getConnection();
-        String query = "SELECT COUNT(*) as record_count FROM request WHERE userId=? AND status=? ORDER BY deadline DESC";
+        String query = "SELECT COUNT(*) as record_count FROM request WHERE astrologerId=? AND status=? ORDER BY deadline DESC";
         PreparedStatement pst = connection.prepareStatement(query);
         pst.setString(1,userId);
         pst.setString(2, String.valueOf(requestType));

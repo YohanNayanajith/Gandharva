@@ -114,8 +114,8 @@
 
     <%
         // Retrieve session attributes
-        String firstName = (String) session.getAttribute("firstName");
-        String lastName = (String) session.getAttribute("lastName");
+        String firstName = astrologer.getFirstName();
+        String lastName = astrologer.getLastName();
     %>
 
     <div class="card--container">

@@ -219,15 +219,15 @@
                 <form class="profile--info" id="profile-info">
                     <h1> Profile Info </h1>
                     <h2> First Name </h2>
-                    <input type="text" class="input" id="firstNameUpdate" value='<c:out value="${sessionScope.loggedInUser.firstName}" />'>
+                    <input type="text" class="input" id="firstNameUpdate" value='<c:out value="${sessionScope.astrologer.firstName}" />'>
                     <h2> Last Name </h2>
-                    <input type="text" class="input" id="lastNameUpdate" value='<c:out value="${sessionScope.loggedInUser.lastName}" />'>
+                    <input type="text" class="input" id="lastNameUpdate" value='<c:out value="${sessionScope.astrologer.lastName}" />'>
                     <h2> Years of Experience </h2>
                     <input type="text" class="input" id="yearsOfExperienceUpdate" value='<c:out value="${sessionScope.astrologer.yearsOfExperience}" />'>
                     <h2> District </h2>
-                    <input type="text" class="input" id="districtUpdate" value='<c:out value="${sessionScope.loggedInUser.district}" />'>
+                    <input type="text" class="input" id="districtUpdate" value='<c:out value="${sessionScope.astrologer.district}" />'>
                     <h2> E-mail </h2>
-                    <input type="text" class="input" id="emailUpdate" value='<c:out value="${sessionScope.loggedInUser.email}" />'>
+                    <input type="text" class="input" id="emailUpdate" value='<c:out value="${sessionScope.astrologer.email}" />'>
                 </form>
             </div>
         </div>

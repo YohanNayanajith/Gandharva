@@ -105,21 +105,36 @@
     </div>
 
     <div class="card--container">
-        <span class="current--date" id="currentDate"></span>
-        <!-- JavaScript to get and display the current date -->
-        <script>
-            // Get the current date
-            var currentDate = new Date();
-            // Format the date as desired (e.g., "January 31, 2024")
-            var options = { year: 'numeric', month: 'long', day: 'numeric' };
-            var formattedDate = currentDate.toLocaleDateString('en-US', options);
-            // Display the current date in the HTML element with id="currentDate"
-            document.getElementById("currentDate").innerHTML = "As at " + formattedDate;
-        </script>
+        <div class="user-status-filter-container">
+            <div class="user-status-filter-container-date">
+                <span class="current--date" id="currentDate"></span>
+                <!-- JavaScript to get and display the current date -->
+                <script>
+                    // Get the current date
+                    var currentDate = new Date();
+                    // Format the date as desired (e.g., "January 31, 2024")
+                    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    var formattedDate = currentDate.toLocaleDateString('en-US', options);
+                    // Display the current date in the HTML element with id="currentDate"
+                    document.getElementById("currentDate").innerHTML = "As at " + formattedDate;
+                </script>
+            </div>
+            <div class="user-status-filter-container-right">
+                <label for="statusFilter" class="user-status-filter-label">Filter by Status:</label>
+                <select id="statusFilter" class="user-status-filter">
+                    <option value="">All</option>
+                    <option value="NEW">New</option>
+                    <option value="PAYMENT_PENDING">Payment Pending</option>
+                    <option value="DONE">Done</option>
+                    <option value="PENDING">Pending</option>
+                </select>
+            </div>
+        </div>
 
-        <div class="tabular--wrapper">
+        <div class="tabular--wrapper--user--request">
             <div class="pending--table">
-                <table>
+                <div id="pagination" class="user-request-table-pagination"></div>
+                <table class="user-request-table" id="user-request-table-id">
                     <thead>
                     <tr>
                         <th>Date</th>

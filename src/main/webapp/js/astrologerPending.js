@@ -1,16 +1,26 @@
-$(document).ready(function () {
+const pageSize = 6; // Maximum rows per page
+let currentPage = 1;
+let totalRows = 0;
+
+$(document).ready(function() {
     $.ajax({
         method: "GET",
         url: "request/getAll",
         // dataType: "json",
         // contentType: "application/json",
-        success: function (result) {
-            $.each(result, function (index, x) {
+        success: function(result) {
+            $.each(result, function(index, x) {
                 $('#user-request-table').append(
                     `<tr>
                         <td>${x.startDate}</td>
                         <td>${x.firstName} ${x.lastName}</td>
-                        <td>Horoscope1</td>
+                        <td>
+                            <div class="pdf-buttons-container">
+                                <button id="downloadButton" class="pdf-buttons" onclick='downloadPDF("${x.horoscope}")'>Download PDF</button>
+                                <div class="pdf-buttons-separator"></div>
+                                <button id="viewButton" class="pdf-buttons" onclick='viewPDF("${x.horoscope}")'>View PDF</button>
+                            </div>
+                        </td>
                         <td>
                             ${x.status}
 
@@ -38,24 +48,93 @@ $(document).ready(function () {
                         </td>
                     </tr>`
                 );
+                totalRows++;
 
-                if(x.status === 'NEW') {
+                if (x.status === 'NEW') {
                     $(`#status-icons-${x.id}`).show();
-                }else if (x.status === 'PAYMENT_PENDING') {
+                } else if (x.status === 'PAYMENT_PENDING') {
                     $(`#payment-icon-${x.id}`).show();
-                }else if (x.status === 'DONE') {
+                } else if (x.status === 'DONE') {
                     $(`#all-status-icon-${x.id}`).show();
-                } else if(x.status === 'PENDING') {
+                } else if (x.status === 'PENDING') {
                     $(`#pending-icons-${x.id}`).show();
                 }
-
+                initPagination();
             });
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
+
+    $('#statusFilter').change(function() {
+      filterTable($(this).val());
+    });
+
+
 });
+
+function initPagination() {
+  const totalPages = Math.ceil(totalRows / pageSize);
+  let paginationHtml = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHtml += `<button class="page-btn" data-page="${i}">${i}</button>`;
+  }
+
+  $('#pagination').html(paginationHtml);
+
+  $('.page-btn').click(function() {
+    const page = parseInt($(this).attr('data-page'));
+    showPage(page);
+  });
+
+  showPage(1);
+}
+
+function showPage(page) {
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
+  $('#user-request-table-id tbody tr').hide();
+
+  $('#user-request-table-id tbody tr').slice(startIndex, endIndex).show();
+
+  currentPage = page;
+}
+
+function filterTable(status) {
+  $('#user-request-table tr').each(function() {
+    const rowStatus = $(this).find('td:nth-child(4)').text().trim();
+    if (status === '' || rowStatus === status) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+}
+
+function downloadPDF(blobData) {
+    const blob = new Blob([blobData], {
+        type: 'application/pdf'
+    });
+
+    const downloadLink = $('<a>')
+        .attr('href', URL.createObjectURL(blob))
+        .attr('download', 'file.pdf')
+        .text('Download PDF');
+
+    $('body').append(downloadLink);
+    downloadLink.get(0).click();
+    downloadLink.remove();
+}
+
+function viewPDF(blobData) {
+    const blob = new Blob([blobData], {
+        type: 'application/pdf'
+    });
+    window.open(URL.createObjectURL(blob));
+}
 
 //$(document).on('click', '.feedback-icon', function () {
 //    let requestId = $(this).data('id');
@@ -101,15 +180,30 @@ function provideFeedback(id) {
                     feedback: feedback,
                     requestId: id
                 },
-                success: function (result) {
-                    if(result == "1"){
-                        Swal.fire('Feedback Submitted!', '', 'success');
-                    }else {
-                        Swal.fire('Feedback is not Submitted!', '', 'error');
+                success: function(result) {
+                    if (result == "1") {
+                        Swal.fire({
+                            title: "Feedback Submitted!",
+                            text: '',
+                            icon: "success",
+                            confirmButtonColor: "#008CBA"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Feedback is not Submitted!",
+                            text: '',
+                            icon: "error",
+                            confirmButtonColor: "#008CBA"
+                        });
                     }
                 },
-                error: function (error) {
-                    Swal.fire('Feedback is not Submitted!', '', 'error');
+                error: function(error) {
+                    Swal.fire({
+                        title: "Feedback is not Submitted!",
+                        text: '',
+                        icon: "error",
+                        confirmButtonColor: "#008CBA"
+                    });
                 }
             });
         }
@@ -120,122 +214,203 @@ function updateComment(inputField, id) {
     let comments = $(inputField).prev('.user-request-comment').val();
 
     Swal.fire({
-      title: "Do you want to save the changes?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Save",
+        title: "Do you want to save the changes?",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Save",
+        confirmButtonColor: "#008CBA",
     }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-                        method: 'POST',
-                        url: 'astrologer/update/pending/comments',
-                        data: {
-                            comments: comments,
-                            requestId: id
-                        },
-                        success: function (result) {
-                            if(result == "1"){
-                                Swal.fire('Comment Updated!', '', 'success');
-                            }else {
-                                Swal.fire('Comment update is not success!', '', 'error');
-                            }
-                        },
-                        error: function (error) {
-                            Swal.fire('Comment update is not success!', '', 'error');
-                        }
+        if (result.isConfirmed) {
+            $.ajax({
+                method: 'POST',
+                url: 'astrologer/update/pending/comments',
+                data: {
+                    comments: comments,
+                    requestId: id
+                },
+                success: function(result) {
+                    if (result == "1") {
+                        Swal.fire({
+                            title: "Comment Updated!",
+                            text: '',
+                            icon: "success",
+                            confirmButtonColor: "#008CBA"
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Comment update is not success!",
+                            text: '',
+                            icon: "error",
+                            confirmButtonColor: "#008CBA"
+                        });
+                    }
+                },
+                error: function(error) {
+                    Swal.fire({
+                        title: "Comment update is not success!",
+                        text: '',
+                        icon: "error",
+                        confirmButtonColor: "#008CBA"
                     });
-      } else {
-        Swal.fire("Changes are not saved", "", "info");
-      }
+                }
+            });
+        } else {
+            Swal.fire({
+                title: "Changes are not saved!",
+                text: '',
+                icon: "error",
+                confirmButtonColor: "#008CBA"
+            });
+        }
     });
 }
 
 function acceptRequest(id) {
     console.log('Accepting request for ID: ' + id);
     Swal.fire({
-          title: "Are you accepting this user request?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Accept",
-          cancelButtonText: "Cancel",
-        }).then((result) => {
-          if (result.isConfirmed) {
+        title: "Are you accepting this user request?",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Accept",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#008CBA",
+    }).then((result) => {
+        if (result.isConfirmed) {
             //PAYMENT_PENDING
             $.ajax({
-                            method: 'POST',
-                            url: 'astrologer/update/pending/status',
-                            data: {
-                                status: "PAYMENT_PENDING",
-                                requestId: id
-                            },
-                            success: function (result) {
-                                if(result == "1"){
-                                    Swal.fire("Saved!", "", "success");
-                                }else {
-                                    Swal.fire('Not Saved!', '', 'error');
-                                }
-                            },
-                            error: function (error) {
-                                Swal.fire('Not Saved!', '', 'error');
-                            }
+                method: 'POST',
+                url: 'astrologer/update/pending/status',
+                data: {
+                    status: "PAYMENT_PENDING",
+                    requestId: id
+                },
+                success: function(result) {
+                    if (result == "1") {
+                        Swal.fire({
+                            title: "Saved!",
+                            text: '',
+                            icon: "success",
+                            confirmButtonColor: "#008CBA"
                         });
+                    } else {
+                        Swal.fire({
+                            title: "Not Saved!",
+                            text: '',
+                            icon: "error",
+                            confirmButtonColor: "#008CBA"
+                        });
+                    }
+                },
+                error: function(error) {
+                    Swal.fire({
+                        title: "Not Saved!",
+                        text: '',
+                        icon: "error",
+                        confirmButtonColor: "#008CBA"
+                    });
+                }
+            });
 
-          } else {
-            Swal.fire("Changes are not saved", "", "info");
-          }
-        });
+        } else {
+            Swal.fire({
+                title: "Changes are not saved!",
+                text: '',
+                icon: "error",
+                confirmButtonColor: "#008CBA"
+            });
+        }
+    });
 }
 
 function declineRequest(id) {
     console.log('Declining request for ID: ' + id);
 
     Swal.fire({
-              title: "Are you decline this user request?",
-              showDenyButton: true,
-              showCancelButton: true,
-              confirmButtonText: "Decline",
-              cancelButtonText: "Cancel",
-            }).then((result) => {
-              if (result.isConfirmed) {
-                //PAYMENT_PENDING
-                $.ajax({
-                                method: 'POST',
-                                url: 'astrologer/update/pending/status',
-                                data: {
-                                    status: "DECLINE",
-                                    requestId: id
-                                },
-                                success: function (result) {
-                                    if(result == "1"){
-                                        Swal.fire("Saved!", "", "success");
-                                    }else {
-                                        Swal.fire('Not Saved!', '', 'error');
-                                    }
-                                },
-                                error: function (error) {
-                                    Swal.fire('Not Saved!', '', 'error');
-                                }
-                            });
-
-              } else {
-                Swal.fire("Changes are not saved", "", "info");
-              }
+        title: "Are you decline this user request?",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Decline",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#008CBA",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            //PAYMENT_PENDING
+            $.ajax({
+                method: 'POST',
+                url: 'astrologer/update/pending/status',
+                data: {
+                    status: "DECLINE",
+                    requestId: id
+                },
+                success: function(result) {
+                    if (result == "1") {
+                        Swal.fire("Saved!", "", "success");
+                    } else {
+                        Swal.fire('Not Saved!', '', 'error');
+                    }
+                },
+                error: function(error) {
+                    Swal.fire('Not Saved!', '', 'error');
+                }
             });
+
+        } else {
+            Swal.fire("Changes are not saved", "", "info");
+        }
+    });
+}
+
+function pendingRequest(id) {
+    console.log('Pending status to done: ' + id);
+
+    Swal.fire({
+        title: "Are you completed this request?",
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Done",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "#008CBA",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            //PAYMENT_PENDING
+            $.ajax({
+                method: 'POST',
+                url: 'astrologer/update/pending/status',
+                data: {
+                    status: "DONE",
+                    requestId: id
+                },
+                success: function(result) {
+                    if (result == "1") {
+                        Swal.fire("Saved!", "", "success");
+                    } else {
+                        Swal.fire('Not Saved!', '', 'error');
+                    }
+                },
+                error: function(error) {
+                    Swal.fire('Not Saved!', '', 'error');
+                }
+            });
+
+        } else {
+            Swal.fire("Changes are not saved", "", "info");
+        }
+    });
 }
 
 function makePayment(id) {
     console.log('Making payment for ID: ' + id);
     window.location.href = "astrologerPayment";
-//    window.location.href = "astrologer";
+    //    window.location.href = "astrologer";
     // after payment completed, Then we have to change tha status
     // PENDING
 
-// Payment completed. It can be a successful failure.
+    // Payment completed. It can be a successful failure.
 
     // Show the payhere.js popup, when "PayHere Pay" is clicked
-//    document.getElementById('payhere-payment').onclick = function (e) {
-//        payhere.startPayment(payment);
-//    };
+    //    document.getElementById('payhere-payment').onclick = function (e) {
+    //        payhere.startPayment(payment);
+    //    };
 }
 
 //function testPayherePayment {

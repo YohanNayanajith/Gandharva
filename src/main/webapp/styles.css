@@ -281,6 +281,14 @@ body{
     border-radius: 10px;
     padding: 2rem;
 }
+
+.tabular--wrapper--user--request{
+    background-color: #fff;
+    /*margin-top: 0.5rem;*/
+    border-radius: 10px;
+    padding: 2rem;
+}
+
 .table--container{
     width: 100%;
 }
@@ -492,7 +500,7 @@ a{
 
 }
 
-/*ASTROLOGER_PENDING*/
+/*START - ASTROLOGER_PENDING*/
 
 .feedback--popup .overlay{
     position: fixed;
@@ -542,6 +550,133 @@ a{
     transition: all 300ms ease-in-out ;
     transform: translate(50%,50%)scale(0);
 }
+
+.pdf-buttons-separator {
+    height: 20px;
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.pdf-buttons-container {
+    display: flex;
+    align-items: center;
+}
+
+.pdf-buttons {
+    display: inline-block;
+    padding: 7px 15px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#downloadButton {
+    background-color: #008CBA;
+    border: 1px solid #008CBA;
+}
+
+#viewButton {
+    background-color: #f44336;
+    border: 1px solid #f44336;
+}
+
+#downloadButton:hover {
+    background-color: white;
+    border-color: #008CBA;
+    color: #008CBA;
+}
+
+#viewButton:hover {
+    background-color: white;
+    border-color: #f44336;
+    color: #f44336;
+}
+
+.status-icon {
+    color: #4CAF50;
+}
+
+.payment-icon {
+    color: #c2a91a;
+}
+
+.accept-icon {
+    color: #008CBA;
+}
+
+.decline-icon {
+    color: #f44336;
+}
+
+.feedback-icon {
+    color: #008CBA;
+}
+
+.comment-icon {
+    color: #008CBA;
+}
+
+.pending-icon {
+    color: #699169;
+}
+
+.user-status-filter{
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.user-status-filter:hover {
+    background-color: #e0e0e0;
+}
+
+.user-status-filter:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-status-filter-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.user-status-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: #0E2C4B;*/
+}
+
+.user-status-filter-container-right {
+    margin-right: 2rem;
+}
+
+.user-request-table-pagination {
+    margin-bottom: 20px;
+}
+
+.page-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/*END - ASTROLOGER_PENDING*/
 
 .google--calender{
     display: flex;
