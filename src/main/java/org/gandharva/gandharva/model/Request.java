@@ -14,10 +14,11 @@ public class Request {
     private String comments;
     private String feedback;
     private UUID userId;
+    private UUID astrologerId;
 
     public Request() {}
 
-    public Request(Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId) {
+    public Request(Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, UUID astrologerId) {
         this.id = UUID.randomUUID();
         this.startDate = startDate;
         this.deadline = deadline;
@@ -26,9 +27,10 @@ public class Request {
         this.comments = comments;
         this.feedback = feedback;
         this.userId = userId;
+        this.astrologerId = astrologerId;
     }
 
-    public Request(UUID id, Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId) {
+    public Request(UUID id, Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, UUID astrologerId) {
         this.id = id;
         this.startDate = startDate;
         this.deadline = deadline;
@@ -37,6 +39,7 @@ public class Request {
         this.comments = comments;
         this.feedback = feedback;
         this.userId = userId;
+        this.astrologerId = astrologerId;
     }
 
     public UUID getId() {
@@ -101,5 +104,13 @@ public class Request {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public UUID getAstrologerId() {
+        return astrologerId;
+    }
+
+    public void setAstrologerId(UUID astrologerId) {
+        this.astrologerId = astrologerId;
     }
 }

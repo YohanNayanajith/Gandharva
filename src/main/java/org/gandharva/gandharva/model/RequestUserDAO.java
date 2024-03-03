@@ -20,16 +20,16 @@ public class RequestUserDAO extends Request{
         this.userType = userType;
     }
 
-    public RequestUserDAO(Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, String firstName, String lastName, String email, String userType) {
-        super(startDate, deadline, horoscope, status, comments, feedback, userId);
+    public RequestUserDAO(Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, UUID astrologerId, String firstName, String lastName, String email, String userType) {
+        super(startDate, deadline, horoscope, status, comments, feedback, userId, astrologerId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.userType = userType;
     }
 
-    public RequestUserDAO(UUID id, Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, String firstName, String lastName, String email, String userType) {
-        super(id, startDate, deadline, horoscope, status, comments, feedback, userId);
+    public RequestUserDAO(UUID id, Date startDate, Date deadline, byte[] horoscope, RequestType status, String comments, String feedback, UUID userId, UUID astrologerId, String firstName, String lastName, String email, String userType) {
+        super(id, startDate, deadline, horoscope, status, comments, feedback, userId, astrologerId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

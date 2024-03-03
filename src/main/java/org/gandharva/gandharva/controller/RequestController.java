@@ -37,6 +37,8 @@ public class RequestController extends HttpServlet {
         RequestType status = RequestType.valueOf(statusString);
         String comments = req.getParameter("comments");
         String feedback = req.getParameter("feedback");
+        String astrologerIdString = req.getParameter("astrologerId");
+        UUID astrologerId = UUID.fromString(astrologerIdString);
 
         HttpSession session = req.getSession();
         String idString = (String) session.getAttribute("id");
@@ -52,7 +54,7 @@ public class RequestController extends HttpServlet {
 //        String idString = "fa993a0b-fe39-4df9-b7f6-183084c5d24c";
 //        UUID userId = UUID.fromString(idString);
 
-        var request = new Request(startDate,deadline,horoscope,status,comments,feedback,userId);
+        var request = new Request(startDate,deadline,horoscope,status,comments,feedback,userId,astrologerId);
 
         boolean success = false;
         try {
