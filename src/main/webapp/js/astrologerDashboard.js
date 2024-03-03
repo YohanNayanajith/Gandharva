@@ -1,11 +1,11 @@
-$(document).ready(function () {
-//    Status - NEW
+$(document).ready(function() {
+    //    Status - NEW
     $.ajax({
         method: "GET",
         url: "request/count/NEW",
         // dataType: "json",
         // contentType: "application/json",
-        success: function (result) {
+        success: function(result) {
             $('#card-header-value-status-new').append(
                 `<div class="amount">
                     <span class="title">
@@ -18,18 +18,18 @@ $(document).ready(function () {
                 <i class="icon fas fa-bell"></i>`
             );
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
 
-//    Status - ACCEPT
+    //    Status - ACCEPT
     $.ajax({
         method: "GET",
         url: "request/count/PENDING",
         // dataType: "json",
         // contentType: "application/json",
-        success: function (result) {
+        success: function(result) {
             $('#card-header-value-status-accept').append(
                 `<div class="amount">
                      <span class="title">
@@ -42,18 +42,18 @@ $(document).ready(function () {
                 <i class="icon fas fa-hourglass-half dark-purple"></i>`
             );
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
 
-//    Status - DONE
+    //    Status - DONE
     $.ajax({
         method: "GET",
         url: "request/count/DONE",
         // dataType: "json",
         // contentType: "application/json",
-        success: function (result) {
+        success: function(result) {
             $('#card-header-value-status-done').append(
                 `<div class="amount">
                     <span class="title">
@@ -66,18 +66,18 @@ $(document).ready(function () {
                 <i class="icon fas fa-circle-check dark-green"></i>`
             );
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
 
-//    Status - Reject
+    //    Status - Reject
     $.ajax({
         method: "GET",
         url: "request/count/DECLINE",
         // dataType: "json",
         // contentType: "application/json",
-        success: function (result) {
+        success: function(result) {
             $('#card-header-value-status-decline').append(
                 `<div class="amount">
                     <span class="title">
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 <i class="icon fas fa-hourglass-half dark-blue"></i>`
             );
         },
-        error: function (error) {
+        error: function(error) {
             console.log(error);
         }
     });
