@@ -1,3 +1,7 @@
+const pageSize = 6; // Maximum rows per page
+let currentPage = 1;
+let totalRows = 0;
+
 $(document).ready(function() {
     $.ajax({
         method: "GET",
@@ -44,6 +48,7 @@ $(document).ready(function() {
                         </td>
                     </tr>`
                 );
+                totalRows++;
 
                 if (x.status === 'NEW') {
                     $(`#status-icons-${x.id}`).show();
@@ -54,7 +59,7 @@ $(document).ready(function() {
                 } else if (x.status === 'PENDING') {
                     $(`#pending-icons-${x.id}`).show();
                 }
-
+                initPagination();
             });
         },
         error: function(error) {
@@ -65,7 +70,38 @@ $(document).ready(function() {
     $('#statusFilter').change(function() {
       filterTable($(this).val());
     });
+
+
 });
+
+function initPagination() {
+  const totalPages = Math.ceil(totalRows / pageSize);
+  let paginationHtml = '';
+
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHtml += `<button class="page-btn" data-page="${i}">${i}</button>`;
+  }
+
+  $('#pagination').html(paginationHtml);
+
+  $('.page-btn').click(function() {
+    const page = parseInt($(this).attr('data-page'));
+    showPage(page);
+  });
+
+  showPage(1);
+}
+
+function showPage(page) {
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+
+  $('#user-request-table-id tbody tr').hide();
+
+  $('#user-request-table-id tbody tr').slice(startIndex, endIndex).show();
+
+  currentPage = page;
+}
 
 function filterTable(status) {
   $('#user-request-table tr').each(function() {

@@ -26,7 +26,7 @@ $(document).ready(function () {
 //    Status - ACCEPT
     $.ajax({
         method: "GET",
-        url: "request/count/ACCEPT",
+        url: "request/count/PENDING",
         // dataType: "json",
         // contentType: "application/json",
         success: function (result) {

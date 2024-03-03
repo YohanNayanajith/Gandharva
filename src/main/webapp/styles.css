@@ -660,6 +660,22 @@ a{
     margin-right: 2rem;
 }
 
+.user-request-table-pagination {
+    margin-bottom: 20px;
+}
+
+.page-btn {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    background-color: #e0e0e0;
+}
+
 /*END - ASTROLOGER_PENDING*/
 
 .google--calender{

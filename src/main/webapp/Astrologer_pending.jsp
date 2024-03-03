@@ -133,7 +133,8 @@
 
         <div class="tabular--wrapper--user--request">
             <div class="pending--table">
-                <table>
+                <div id="pagination" class="user-request-table-pagination"></div>
+                <table class="user-request-table" id="user-request-table-id">
                     <thead>
                     <tr>
                         <th>Date</th>
