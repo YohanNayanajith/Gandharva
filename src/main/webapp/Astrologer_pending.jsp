@@ -82,11 +82,18 @@
 
 <div class="main--content">
     <%
-        AllUser astrologer = (AllUser) session.getAttribute("astrologer");
-        byte[] blobData = astrologer.getUserImage();
+        String base64Image = null;
+        if (session.getAttribute("id") == null) {
+            // If session does not exist, redirect to login page
+            response.sendRedirect("login");
+        } else {
+            AllUser astrologer = (AllUser) session.getAttribute("astrologer");
+            byte[] blobData = astrologer.getUserImage();
 
-        // Encode byte array to Base64
-        String base64Image = Base64.getEncoder().encodeToString(blobData);
+            // Encode byte array to Base64
+            base64Image = Base64.getEncoder().encodeToString(blobData);
+        }
+
     %>
     <div class="header--wrapper">
         <div class="header--title">
@@ -99,7 +106,7 @@
                 <input type="text" placeholder="Search">
             </div>
             <a href="Astrologer_profile.jsp">
-                <img src="data:image/png;base64, <%= base64Image %>" alt="User Image">
+                <img src="data:image/png;base64, <%= base64Image != null ? base64Image : "" %>" alt="User Image">
             </a>
         </div>
     </div>

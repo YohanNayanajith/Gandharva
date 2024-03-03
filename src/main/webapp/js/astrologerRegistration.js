@@ -1,28 +1,28 @@
-$(document).ready(function () {
-//    async function convertImageToBase64(imagePath) {
-//        // Create a new FileReader instance
-//        var reader = new FileReader();
-//
-//        // Read the image file as a data URL
-//        reader.readAsDataURL(imagePath);
-//
-//        // Use a promise to wait for the FileReader to finish reading
-//        await new Promise((resolve, reject) => {
-//            reader.onloadend = resolve;
-//            reader.onerror = reject;
-//        });
-//
-//        // Return the base64 data URL
-//        return reader.result;
-//    }
+$(document).ready(function() {
+    //    async function convertImageToBase64(imagePath) {
+    //        // Create a new FileReader instance
+    //        var reader = new FileReader();
+    //
+    //        // Read the image file as a data URL
+    //        reader.readAsDataURL(imagePath);
+    //
+    //        // Use a promise to wait for the FileReader to finish reading
+    //        await new Promise((resolve, reject) => {
+    //            reader.onloadend = resolve;
+    //            reader.onerror = reject;
+    //        });
+    //
+    //        // Return the base64 data URL
+    //        return reader.result;
+    //    }
 
-    $('#registration-form').submit(function (e) {
+    $('#registration-form').submit(function(e) {
         e.preventDefault();
 
         // Validate form data (add appropriate validation based on requirements)
-//        if (!validateForm()) {
-//            return; // Prevent submission if validation fails
-//        }
+        //        if (!validateForm()) {
+        //            return; // Prevent submission if validation fails
+        //        }
 
         // Extract and normalize form data
         let firstName = $('#first_name').val().trim();
@@ -35,8 +35,8 @@ $(document).ready(function () {
         let numberOfCasesHandled = 0; // Default value based on prompt
         let yearsOfExperience = parseInt($('#experience').val().trim()); // Enforce integer
 
-//        var imagePath = "images/img.png"; // Path to your image file
-//        var base64Image = await convertImageToBase64(imagePath);
+        //        var imagePath = "images/img.png"; // Path to your image file
+        //        var base64Image = await convertImageToBase64(imagePath);
 
         // Create a FormData object (recommended for file uploads)
         let formData = new FormData();
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 formData.append('certificateFileUpload', file);
             }
         }
-//        formData.append("userImage",base64Image);
+        //        formData.append("userImage",base64Image);
 
         certificateFileUpload = formData.get("certificateFileUpload");
 
@@ -67,7 +67,7 @@ $(document).ready(function () {
             data: formData,
             processData: false,
             contentType: false,
-            success: function (result) {
+            success: function(result) {
                 // Handle successful registration
                 Swal.fire({
                     icon: 'success',
@@ -78,7 +78,7 @@ $(document).ready(function () {
                 });
                 window.location.href = "login";
             },
-            error: function (error) {
+            error: function(error) {
                 // Handle registration errors
                 Swal.fire({
                     icon: 'error',
@@ -90,7 +90,7 @@ $(document).ready(function () {
             }
         });
     });
-    $('#certificates').change(function () {
+    $('#certificates').change(function() {
         const files = $(this).prop('files');
         for (const file of files) {
             console.log('File name:', file.name);

@@ -2,36 +2,37 @@ let count = 0;
 var paymentId = 0;
 let checkStatus = 0;
 
-function countPaymentId(order_id){
+function countPaymentId(order_id) {
     $.ajax({
-        method:'POST',
-        url:"physicalPaymentCount",
+        method: 'POST',
+        url: "physicalPaymentCount",
         // dataType:'json',
-    }).done(function(data){
+    }).done(function(data) {
         console.log(data);
-        let result = parseInt(data)+1;
-        let resultStr = "Payment"+result;
+        let result = parseInt(data) + 1;
+        let resultStr = "Payment" + result;
         paymentId = result;
 
         document.getElementById(order_id.toString()).value = resultStr;
         // $('#'+result_value).attr("disabled", true);
-        $('#'+order_id.toString()).css("border", "2px solid grey");
-        $('#'+order_id.toString()).css("color", "grey");
-    }).fail(function(a,b,err){
-        console.log(a,b,err)
+        $('#' + order_id.toString()).css("border", "2px solid grey");
+        $('#' + order_id.toString()).css("color", "grey");
+    }).fail(function(a, b, err) {
+        console.log(a, b, err)
     });
 }
 
 //function fillCustomerDetails(){}
 
-function editPaymentBackgroundOn(){
-    $('.payment_physical_big_container_background').css('display','block');
-}
-function editPaymentBackgroundOff(){
-    $('.payment_physical_big_container_background').css('display','none');
+function editPaymentBackgroundOn() {
+    $('.payment_physical_big_container_background').css('display', 'block');
 }
 
-function payments_pay(){
+function editPaymentBackgroundOff() {
+    $('.payment_physical_big_container_background').css('display', 'none');
+}
+
+function payments_pay() {
     // md5sig = strtoupper (md5 ( merchant_id + order_id + payhere_amount + payhere_currency + status_code + strtoupper(md5(payhere_secret)) ) );
     $('#payment_popup_details').show();
     //fillCustomerDetails();
@@ -41,11 +42,11 @@ function payments_pay(){
     countPaymentId("order_id");
 
     $.ajax({
-        method:"POST",
-        url:"memberDetails",
-        dataType:"json",
+        method: "POST",
+        url: "memberDetails",
+        dataType: "json",
         // contentType:"application/json",
-        success: function (result){
+        success: function(result) {
             console.log(result);
             document.getElementById("first_name").value = result["first_name"];
             document.getElementById("last_name").value = result["last_name"];
@@ -54,42 +55,42 @@ function payments_pay(){
             document.getElementById("address").value = result["address"];
             //document.getElementById("city").value = result["first_name"];
 
-            let idPaimentCus = ["first_name","last_name","email","phone","address"];
+            let idPaimentCus = ["first_name", "last_name", "email", "phone", "address"];
 
-            $.each(idPaimentCus,function(index,result_value){
-                $('#'+result_value).css("border", "2px solid grey");
-                $('#'+result_value).css("color", "grey");
+            $.each(idPaimentCus, function(index, result_value) {
+                $('#' + result_value).css("border", "2px solid grey");
+                $('#' + result_value).css("color", "grey");
             });
 
-            let idNamesMembership = ["expiry_day","items","amount"];
-            let dataNames = ["expiry_day","membership_category","renewal"];
-            if(count == 0){
+            let idNamesMembership = ["expiry_day", "items", "amount"];
+            let dataNames = ["expiry_day", "membership_category", "renewal"];
+            if (count == 0) {
                 $.ajax({
-                    method:'POST',
-                    url:"membership",
-                    dataType:'json',
+                    method: 'POST',
+                    url: "membership",
+                    dataType: 'json',
 
-                }).done(function(data){
+                }).done(function(data) {
                     console.log(data);
-                    $.each(idNamesMembership,function(index,result_value){
+                    $.each(idNamesMembership, function(index, result_value) {
                         let name = dataNames[index].toString();
-                        if(name == dataNames[0]){
+                        if (name == dataNames[0]) {
                             let nameObject = {};
                             nameObject = data[name];
-                            let nameStr = nameObject["year"]+"-"+nameObject["month"]+"-"+nameObject["day"];
+                            let nameStr = nameObject["year"] + "-" + nameObject["month"] + "-" + nameObject["day"];
                             document.getElementById(result_value).value = nameStr;
-                            $('#'+result_value).css("border", "2px solid grey");
-                            $('#'+result_value).css("color", "grey");
-                        }else{
+                            $('#' + result_value).css("border", "2px solid grey");
+                            $('#' + result_value).css("color", "grey");
+                        } else {
                             document.getElementById(result_value).value = data[name];
                             // $('#'+result_value).attr("disabled", true);
-                            $('#'+result_value).css("border", "2px solid grey");
-                            $('#'+result_value).css("color", "grey");
+                            $('#' + result_value).css("border", "2px solid grey");
+                            $('#' + result_value).css("color", "grey");
                         }
                     });
-                }).fail(function(a,b,err){
+                }).fail(function(a, b, err) {
                     //alert("Error");
-                    console.log(a,b,err)
+                    console.log(a, b, err)
                 });
             }
 
@@ -97,16 +98,16 @@ function payments_pay(){
             // $('#currency').attr("disabled", true);
             $('#currency').css("border", "2px solid grey");
             $('#currency').css("color", "grey");
-            count+=1;
+            count += 1;
 
         },
-        error: function(error){
-            console.log(error+"payment");
+        error: function(error) {
+            console.log(error + "payment");
         }
     });
 }
 
-function pay_bill_view(payment_id,cus_first_name,cus_last_name,cus_address,payment_amount,payment_date_year,payment_date_month,payment_date_day,cus_city){
+function pay_bill_view(payment_id, cus_first_name, cus_last_name, cus_address, payment_amount, payment_date_year, payment_date_month, payment_date_day, cus_city) {
     $('#after_payment_popup_details').show();
     editPaymentBackgroundOn();
 
@@ -145,41 +146,44 @@ function pay_bill_view(payment_id,cus_first_name,cus_last_name,cus_address,payme
 
 }
 
-function close_payment_details(){
+function close_payment_details() {
     $('#payment_popup_details').hide();
     editPaymentBackgroundOff();
 }
-function close_after_payment_details(){
+
+function close_after_payment_details() {
     $('#after_payment_popup_details').hide();
     editPaymentBackgroundOff();
     $('.payment_detail_container_input').remove();
 }
 
-function email_regex_Validate(emailValue){
-    let regexPattern = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);    // regular expression pattern
+function email_regex_Validate(emailValue) {
+    let regexPattern = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/); // regular expression pattern
     return regexPattern.test(emailValue);
 }
-function checkDataValidate(form_data,idNamesCustomer,namesOFId){
+
+function checkDataValidate(form_data, idNamesCustomer, namesOFId) {
     let i = 0;
     let count = 1;
-    $.each(form_data,function(index,value){
+    $.each(form_data, function(index, value) {
         //console.log("Mavai hoyanne"+form_data);
         console.log(form_data);
-        if(value.length == ''){
-            console.log(index+" : "+value);
+        if (value.length == '') {
+            console.log(index + " : " + value);
             let idValue = idNamesCustomer[i];
-            let errorMsg = "**"+namesOFId[i]+" is missing";
-            $('#'+idValue).html(errorMsg);
-            $('#'+idValue).css("color", "red");
-            $('#'+idValue).show();
+            let errorMsg = "**" + namesOFId[i] + " is missing";
+            $('#' + idValue).html(errorMsg);
+            $('#' + idValue).css("color", "red");
+            $('#' + idValue).show();
 
-            i+=1;
+            i += 1;
             count = 0;
         }
     });
     return count;
 }
-function hideErrors(){
+
+function hideErrors() {
     $('#payment_error1').hide();
     $('#payment_error2').hide();
     $('#payment_error3').hide();
@@ -187,7 +191,7 @@ function hideErrors(){
     $('#payment_error5').hide();
 }
 
-function hideErrors1(){
+function hideErrors1() {
     $('#payment_error11').hide();
     $('#payment_error21').hide();
     $('#payment_error31').hide();
@@ -195,31 +199,31 @@ function hideErrors1(){
     $('#payment_error51').hide();
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     hideErrors();
 });
 
 //payment from payhere
-function payment_cash(){
+function payment_cash() {
     //cash payment function
     //send a request to branch manager
     checkStatus = 0;
     hideErrors();
-    $('#payment_detail_container_form').submit(function(e){
+    $('#payment_detail_container_form').submit(function(e) {
 
         // e.preventDefault();
         let form_data = $("form").serializeArray();
         console.log(form_data);
         let payment = {};
-        $.each(form_data, function(i, field){
+        $.each(form_data, function(i, field) {
             payment[field.name] = field.value;
         });
         payment["payment_id"] = paymentId.toString();
         console.log(payment);
         console.log(payment["merchant_id"]);
         // let idNamesCustomer = ["first_name","last_name","email","phone"];
-        let idNamesCustomer = ["payment_error1","payment_error2","payment_error3","payment_error4"];
-        let namesOFId = ["First Name","Last Name","Email","Contact Number"];
+        let idNamesCustomer = ["payment_error1", "payment_error2", "payment_error3", "payment_error4"];
+        let namesOFId = ["First Name", "Last Name", "Email", "Contact Number"];
 
         let first_name = $('#first_name').val();
         let last_name = $('#last_name').val();
@@ -227,36 +231,36 @@ function payment_cash(){
         let phone = $('#phone').val();
         let city = $('#city').val();
 
-        let returnVal = checkDataValidate(payment,idNamesCustomer,namesOFId);
-        if(returnVal == 0){
+        let returnVal = checkDataValidate(payment, idNamesCustomer, namesOFId);
+        if (returnVal == 0) {
             e.preventDefault();
             return;
         }
 
-        if(city == ''){
+        if (city == '') {
             $('#payment_error5').html("**Can't be empty");
             return;
         }
 
-        if(!email_regex_Validate(email)){
+        if (!email_regex_Validate(email)) {
             $('#payment_error3').html("**Enter valid email");
             $('#payment_error3').css("color", "red");
             e.preventDefault();
             return;
         }
-        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))){
+        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))) {
             $('#payment_error1').html("**First Name must only contain characters");
             $('#payment_error1').css("color", "red");
             e.preventDefault();
             return;
-        }else if(!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))){
+        } else if (!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))) {
             $('#payment_error2').html("**Last Name must only contain characters");
             $('#payment_error2').css("color", "red");
             e.preventDefault();
             return;
         }
         let isnum = /^\d+$/.test(phone);
-        if(!isnum){
+        if (!isnum) {
             $('#payment_error4').html("**Contact Number must only contain digit");
             $('#payment_error4').css("color", "red");
             e.preventDefault();
@@ -270,7 +274,7 @@ function payment_cash(){
         //now suppose its get the every payment is done
         // alert();
 
-        afterOnlinePayment(payment,checkStatus,"Cash Payment");
+        afterOnlinePayment(payment, checkStatus, "Cash Payment");
         e.preventDefault();
 
         saveNotification();
@@ -280,7 +284,8 @@ function payment_cash(){
 
     });
 }
-function saveNotification(){
+
+function saveNotification() {
 
     const date = new Date();
     // let year_age = date.getFullYear() - arr_date[0];
@@ -289,18 +294,18 @@ function saveNotification(){
 
     let user_id = null; //branchID
     let notification_title = "Cash Payment Reminder";
-    let notification_time = ("0" + date.getHours()).slice(-2)+":"+("0" + date.getMinutes()).slice(-2)+":"+("0" + date.getSeconds()).slice(-2);
-    let notification_date = date.getFullYear()+"-"+("0" + (date.getMonth()+1)).slice(-2)+"-"+("0" + date.getDate()).slice(-2);
+    let notification_time = ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
+    let notification_date = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
     let notification_type = "immediate";
     let notification_status = 0;
 
     $.ajax({
-        method:"POST",
-        url:"branchDetails",
+        method: "POST",
+        url: "branchDetails",
         //data: {},
         // dataType:"json",
         // contentType:"application/json",
-        success: function (result){
+        success: function(result) {
             console.log(result);
             user_id = result;
 
@@ -308,27 +313,34 @@ function saveNotification(){
             //return arr;
 
             $.ajax({
-                method:"POST",
-                url:"saveNotification",
-                data: {user_id:user_id,notification_title:notification_title,notification_time:notification_time,notification_date:notification_date,notification_type:notification_type,notification_status:notification_status},
+                method: "POST",
+                url: "saveNotification",
+                data: {
+                    user_id: user_id,
+                    notification_title: notification_title,
+                    notification_time: notification_time,
+                    notification_date: notification_date,
+                    notification_type: notification_type,
+                    notification_status: notification_status
+                },
                 // dataType:"json",
                 // contentType:"application/json",
-                success: function (result){
-                    if(result.trim() == "1"){
+                success: function(result) {
+                    if (result.trim() == "1") {
                         console.log("Notification is saved");
-                    }else if(result.trim() == "0"){
+                    } else if (result.trim() == "0") {
                         console.log("Notification is not saved");
-                    }else {
+                    } else {
                         console.log("Notification is saved and error1");
                     }
                 },
-                error: function(error){
+                error: function(error) {
                     console.log(error);
                     console.log("Notification is saved and error2");
                 }
             });
         },
-        error: function(error){
+        error: function(error) {
             console.log(error);
             console.log("Notification is saved and error2");
         }
@@ -356,24 +368,24 @@ function saveNotification(){
 //
 // }
 
-function payment_online(){
+function payment_online() {
     checkStatus = 1;
     hideErrors();
-    $('#payment_detail_container_form').submit(function(e){
+    $('#payment_detail_container_form').submit(function(e) {
 
         // e.preventDefault();
         let form_data = $("form").serializeArray();
         console.log(form_data);
         let payment = {};
-        $.each(form_data, function(i, field){
+        $.each(form_data, function(i, field) {
             payment[field.name] = field.value;
         });
         payment["payment_id"] = paymentId.toString();
         console.log(payment);
         console.log(payment["merchant_id"]);
         // let idNamesCustomer = ["first_name","last_name","email","phone"];
-        let idNamesCustomer = ["payment_error1","payment_error2","payment_error3","payment_error4"];
-        let namesOFId = ["First Name","Last Name","Email","Contact Number"];
+        let idNamesCustomer = ["payment_error1", "payment_error2", "payment_error3", "payment_error4"];
+        let namesOFId = ["First Name", "Last Name", "Email", "Contact Number"];
 
         let first_name = $('#first_name').val();
         let last_name = $('#last_name').val();
@@ -381,34 +393,34 @@ function payment_online(){
         let phone = $('#phone').val();
         let city = $('#city').val();
 
-        let returnVal = checkDataValidate(payment,idNamesCustomer,namesOFId);
-        if(returnVal == 0){
+        let returnVal = checkDataValidate(payment, idNamesCustomer, namesOFId);
+        if (returnVal == 0) {
             e.preventDefault();
             return;
         }
-        if(city == ''){
+        if (city == '') {
             $('#payment_error5').html("**Can't be empty");
             return;
         }
-        if(!email_regex_Validate(email)){
+        if (!email_regex_Validate(email)) {
             $('#payment_error3').html("**Enter valid email");
             $('#payment_error3').css("color", "red");
             e.preventDefault();
             return;
         }
-        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))){
+        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))) {
             $('#payment_error1').html("**First Name must only contain characters");
             $('#payment_error1').css("color", "red");
             e.preventDefault();
             return;
-        }else if(!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))){
+        } else if (!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))) {
             $('#payment_error2').html("**Last Name must only contain characters");
             $('#payment_error2').css("color", "red");
             e.preventDefault();
             return;
         }
         let isnum = /^\d+$/.test(phone);
-        if(!isnum){
+        if (!isnum) {
             $('#payment_error4').html("**Contact Number must only contain digit");
             $('#payment_error4').css("color", "red");
             e.preventDefault();
@@ -417,61 +429,61 @@ function payment_online(){
         hideErrors();
 
         //e.preventDefault();
-        afterOnlinePayment(payment,checkStatus,"Online Payment");
+        afterOnlinePayment(payment, checkStatus, "Online Payment");
     });
 }
 
-function instructor_payment_online(){
+function instructor_payment_online() {
     //alert("Yohan");
     checkStatus = 1;
     hideErrors1();
-    $('#payment_detail_container_form1').submit(function(e){
+    $('#payment_detail_container_form1').submit(function(e) {
         // e.preventDefault();
         let form_data = $("form").serializeArray();
         //console.log(form_data);
         let payment = {};
-        $.each(form_data, function(i, field){
+        $.each(form_data, function(i, field) {
             payment[field.name] = field.value;
         });
         payment["payment_id"] = paymentId.toString();
         console.log(payment);
         //console.log(payment["merchant_id"]);
         // let idNamesCustomer = ["first_name","last_name","email","phone"];
-        let idNamesCustomer = ["payment_error11","payment_error21","payment_error31","payment_error41"];
-        let namesOFId = ["First Name","Last Name","Email","Contact Number"];
+        let idNamesCustomer = ["payment_error11", "payment_error21", "payment_error31", "payment_error41"];
+        let namesOFId = ["First Name", "Last Name", "Email", "Contact Number"];
 
         let first_name = $('#first_name1').val();
         let last_name = $('#last_name1').val();
         let email = $('#email1').val();
         let phone = $('#phone1').val();
         let instructor_id = $('#instructor_id_hidden').val();
-        console.log("Instructor ID"+instructor_id);
+        console.log("Instructor ID" + instructor_id);
 
-        let returnVal = checkDataValidate(payment,idNamesCustomer,namesOFId);
-        if(returnVal == 0){
+        let returnVal = checkDataValidate(payment, idNamesCustomer, namesOFId);
+        if (returnVal == 0) {
             e.preventDefault();
             return;
         }
 
-        if(!email_regex_Validate(email)){
+        if (!email_regex_Validate(email)) {
             $('#payment_error31').html("**Enter valid email");
             $('#payment_error31').css("color", "red");
             e.preventDefault();
             return;
         }
-        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))){
+        if (!(/[a-z]/.test(first_name) || /[A-Z]/.test(first_name))) {
             $('#payment_error11').html("**First Name must only contain characters");
             $('#payment_error11').css("color", "red");
             e.preventDefault();
             return;
-        }else if(!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))){
+        } else if (!(/[a-z]/.test(last_name) || /[A-Z]/.test(last_name))) {
             $('#payment_error21').html("**Last Name must only contain characters");
             $('#payment_error21').css("color", "red");
             e.preventDefault();
             return;
         }
         let isnum = /^\d+$/.test(phone);
-        if(!isnum){
+        if (!isnum) {
             $('#payment_error41').html("**Contact Number must only contain digit");
             $('#payment_error41').css("color", "red");
             e.preventDefault();
@@ -482,18 +494,18 @@ function instructor_payment_online(){
         //e.preventDefault();
         //alert("yohan");
         saveVirtualPhysicalTableData(instructor_id);
-        afterOnlinePayment(payment,checkStatus,"Instructor Payment");
+        afterOnlinePayment(payment, checkStatus, "Instructor Payment");
     });
 }
 
-function afterOnlinePayment(data,status,payment_method){
+function afterOnlinePayment(data, status, payment_method) {
     //alert("submit");
     const date = new Date();
-    let fullDate = date.getFullYear()+"-"+(date.getMonth() + 1).toString().padStart(2, "0")+"-"+date.getDate().toString().padStart(2, "0");
+    let fullDate = date.getFullYear() + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
     data["current_date"] = fullDate;
     // console.log(data);
-    let new_expire_date1 = parseInt(date.getFullYear())+1;
-    let new_expire_date = new_expire_date1 + "-" +(date.getMonth() + 1).toString().padStart(2, "0")+"-"+date.getDate().toString().padStart(2, "0");
+    let new_expire_date1 = parseInt(date.getFullYear()) + 1;
+    let new_expire_date = new_expire_date1 + "-" + (date.getMonth() + 1).toString().padStart(2, "0") + "-" + date.getDate().toString().padStart(2, "0");
     data["new_expire_date"] = new_expire_date;
 
     //console.log(data);
@@ -502,7 +514,7 @@ function afterOnlinePayment(data,status,payment_method){
     // let payment_method = data.
     let newExpireDate = data.expiry_day.split("-");
     //console.log(newExpireDate);
-    let previous_expire_date = newExpireDate[0]+"-"+("0"+newExpireDate[1]).slice(-2)+"-"+("0"+newExpireDate[2]).slice(-2);
+    let previous_expire_date = newExpireDate[0] + "-" + ("0" + newExpireDate[1]).slice(-2) + "-" + ("0" + newExpireDate[2]).slice(-2);
     console.log(previous_expire_date);
     // let previous_expire_date = data.expiry_day;
     //previous_expire_date = x.appointment_date["year"]+"-"+("0" + x.appointment_date["month"]).slice(-2)+"-"+("0" + x.appointment_date["day"]).slice(-2);
@@ -518,84 +530,99 @@ function afterOnlinePayment(data,status,payment_method){
     // let new_expire_date = new_expire_date2;
 
     $.ajax({
-        method:"POST",
-        url:"payment",
-        data: {payment_id:payment_id, payment_date:payment_date, previous_expire_date:previous_expire_date, currency:currency, payment_amount:payment_amount,payment_status:payment_status, cus_first_name:cus_first_name, cus_last_name:cus_last_name, cus_address:cus_address, cus_city:cus_city, new_expire_date:new_expire_date,payment_method:payment_method},
+        method: "POST",
+        url: "payment",
+        data: {
+            payment_id: payment_id,
+            payment_date: payment_date,
+            previous_expire_date: previous_expire_date,
+            currency: currency,
+            payment_amount: payment_amount,
+            payment_status: payment_status,
+            cus_first_name: cus_first_name,
+            cus_last_name: cus_last_name,
+            cus_address: cus_address,
+            cus_city: cus_city,
+            new_expire_date: new_expire_date,
+            payment_method: payment_method
+        },
         // dataType:"json",
         // contentType:"application/json",
-        success: function (result){
-            if(result.trim() == "1"){
+        success: function(result) {
+            if (result.trim() == "1") {
                 //alert(result);
 
-                if(checkStatus == 0){
+                if (checkStatus == 0) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Request Send to Manager!',
                         // text: 'Physical Member!',
-                        confirmButtonText:"Ok",
+                        confirmButtonText: "Ok",
                         confirmButtonColor: '#0E2C4B',
                     })
-                }else {
+                } else {
                     Swal.fire({
                         icon: 'success',
                         //title: 'Paid Successfully',
                         title: 'Payment Proceed',
                         // text: 'Physical Member!',
-                        confirmButtonText:"Ok",
+                        confirmButtonText: "Ok",
                         confirmButtonColor: '#0E2C4B',
                     })
                 }
-            }else if(result.trim() == "0"){
+            } else if (result.trim() == "0") {
                 Swal.fire({
                     icon: 'error',
                     title: 'Paid Unsuccessfully!',
                     text: 'Payment cannot completed!',
-                    confirmButtonText:"Ok",
+                    confirmButtonText: "Ok",
                     confirmButtonColor: '#932828',
                 })
-            }else {
+            } else {
                 // alert(result);
                 Swal.fire({
                     icon: 'error',
                     title: 'Paid Unsuccessfully!',
                     text: 'Payment cannot completed!',
-                    confirmButtonText:"Ok",
+                    confirmButtonText: "Ok",
                     confirmButtonColor: '#932828',
                 })
             }
 
         },
-        error: function(error){
+        error: function(error) {
             console.log(error);
             Swal.fire({
                 icon: 'error',
                 title: 'Payment Unsuccessfully!',
                 text: 'Cannot resolve, System issue!!',
-                confirmButtonText:"Ok",
+                confirmButtonText: "Ok",
                 confirmButtonColor: '#932828',
             })
         }
     });
 }
 
-function saveVirtualPhysicalTableData(instructor_id){
+function saveVirtualPhysicalTableData(instructor_id) {
     //alert("Save data");
     $.ajax({
-        method:"POST",
-        url:"saveInstructorVirtualPhysicalData",
-        data: {instructor_id:instructor_id},
+        method: "POST",
+        url: "saveInstructorVirtualPhysicalData",
+        data: {
+            instructor_id: instructor_id
+        },
         // dataType:"json",
         // contentType:"application/json",
-        success: function (result){
+        success: function(result) {
             console.log(result);
-            if(result.trim() == "1") {
+            if (result.trim() == "1") {
                 //alert(result);
                 console.log("saveInstructorVirtualPhysicalData saved");
-            }else {
+            } else {
                 console.log("saveInstructorVirtualPhysicalData unsaved");
             }
         },
-        error: function (error){
+        error: function(error) {
             console.log(error);
         }
     });

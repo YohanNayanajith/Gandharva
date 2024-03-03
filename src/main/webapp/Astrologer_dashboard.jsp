@@ -86,11 +86,19 @@
 
 <div class="main--content" >
     <%
-        AllUser astrologer = (AllUser) session.getAttribute("astrologer");
-        byte[] blobData = astrologer.getUserImage();
+        String base64Image = null;
+        String firstName = "Not";
+        String lastName = "Applicable";
+        if (session.getAttribute("id") == null) {
+            response.sendRedirect("login");
+        } else {
+            AllUser astrologer = (AllUser) session.getAttribute("astrologer");
+            byte[] blobData = astrologer.getUserImage();
 
-        // Encode byte array to Base64
-        String base64Image = Base64.getEncoder().encodeToString(blobData);
+            base64Image = Base64.getEncoder().encodeToString(blobData);
+            firstName = astrologer.getFirstName();
+            lastName = astrologer.getLastName();
+        }
     %>
     <div class="header--wrapper">
         <div class="header--title">
@@ -106,17 +114,11 @@
             </div>
 
             <a href="Astrologer_profile.jsp">
-                <img src="data:image/png;base64, <%= base64Image %>" alt="User Image">
+                <img src="data:image/png;base64, <%= base64Image != null ? base64Image : "" %>" alt="User Image">
             </a>
         </div>
 
     </div>
-
-    <%
-        // Retrieve session attributes
-        String firstName = astrologer.getFirstName();
-        String lastName = astrologer.getLastName();
-    %>
 
     <div class="card--container">
         <h3 class="main--title">Welcome! <%= firstName + " " + lastName %></h3>

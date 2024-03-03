@@ -68,50 +68,50 @@ $(document).ready(function() {
     });
 
     $('#statusFilter').change(function() {
-      filterTable($(this).val());
+        filterTable($(this).val());
     });
 
 
 });
 
 function initPagination() {
-  const totalPages = Math.ceil(totalRows / pageSize);
-  let paginationHtml = '';
+    const totalPages = Math.ceil(totalRows / pageSize);
+    let paginationHtml = '';
 
-  for (let i = 1; i <= totalPages; i++) {
-    paginationHtml += `<button class="page-btn" data-page="${i}">${i}</button>`;
-  }
+    for (let i = 1; i <= totalPages; i++) {
+        paginationHtml += `<button class="page-btn" data-page="${i}">${i}</button>`;
+    }
 
-  $('#pagination').html(paginationHtml);
+    $('#pagination').html(paginationHtml);
 
-  $('.page-btn').click(function() {
-    const page = parseInt($(this).attr('data-page'));
-    showPage(page);
-  });
+    $('.page-btn').click(function() {
+        const page = parseInt($(this).attr('data-page'));
+        showPage(page);
+    });
 
-  showPage(1);
+    showPage(1);
 }
 
 function showPage(page) {
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
 
-  $('#user-request-table-id tbody tr').hide();
+    $('#user-request-table-id tbody tr').hide();
 
-  $('#user-request-table-id tbody tr').slice(startIndex, endIndex).show();
+    $('#user-request-table-id tbody tr').slice(startIndex, endIndex).show();
 
-  currentPage = page;
+    currentPage = page;
 }
 
 function filterTable(status) {
-  $('#user-request-table tr').each(function() {
-    const rowStatus = $(this).find('td:nth-child(4)').text().trim();
-    if (status === '' || rowStatus === status) {
-      $(this).show();
-    } else {
-      $(this).hide();
-    }
-  });
+    $('#user-request-table tr').each(function() {
+        const rowStatus = $(this).find('td:nth-child(4)').text().trim();
+        if (status === '' || rowStatus === status) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
 }
 
 function downloadPDF(blobData) {

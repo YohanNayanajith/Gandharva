@@ -97,11 +97,14 @@
     </div>
     </a>
     <%
-        AllUser astrologer = (AllUser) session.getAttribute("astrologer");
-        byte[] blobData = astrologer.getUserImage();
-
-        // Encode byte array to Base64
-        String base64Image = Base64.getEncoder().encodeToString(blobData);
+        String base64Image = null;
+        if (session.getAttribute("id") == null) {
+            response.sendRedirect("login");
+        } else {
+            AllUser astrologer = (AllUser) session.getAttribute("astrologer");
+            byte[] blobData = astrologer.getUserImage();
+            base64Image = Base64.getEncoder().encodeToString(blobData);
+        }
     %>
     <ul class="menu">
         <li>

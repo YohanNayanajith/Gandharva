@@ -231,6 +231,13 @@
 
 
 <header>
+    <script>
+        // Disable browser navigation buttons
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+    </script>
     <nav>
         <div class="logo">
             <a href="HomePage.jsp"> <img src='images/logo.png' alt="Logo"></a>
